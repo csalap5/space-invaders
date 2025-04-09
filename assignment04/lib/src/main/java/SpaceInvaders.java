@@ -1,11 +1,17 @@
 import java.awt.*;
-	import java.awt.event.WindowAdapter;
-	import java.awt.event.WindowEvent;
-	import java.awt.event.WindowListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-	import javax.swing.*;
+import javax.swing.*;
+/**
+ * 
+ */
 public class SpaceInvaders extends JFrame {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	public SpaceInvaders() {
 		setTitle("Window with Colors");
 		setLayout(new FlowLayout());
@@ -20,20 +26,24 @@ public class SpaceInvaders extends JFrame {
 		
 		var about = new JMenuItem("About...");
 		help.add(about);
-		help.addSeparator();
-		var exit = game.add("Exit");
+		var newGame = game.add("New Game");
+		game.addSeparator();
+		var pause = game.add("Pause");
+		var resume = game.add("Resume");
+		game.addSeparator();
+		var exit = game.add("Quit");
 		exit.addActionListener(e -> {
 			var result = JOptionPane.showConfirmDialog(this, "Do you want to exit?");
 			if (result == JOptionPane.OK_OPTION) {
 				dispose();
 			}
 		});
-		about.addActionListener(e -> JOptionPane.showMessageDialog(this, "Space Invaders:/nBy Carter Salapka and Kevin Farnsworth"));
+		about.addActionListener(e -> JOptionPane.showMessageDialog(this, "Space Invaders:"+ "\n" + "By Carter Salapka and Kevin Farnsworth"));
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				var result = JOptionPane.showConfirmDialog(SpaceInvaders.this, "Do you want to exit?");
+				var result = JOptionPane.showConfirmDialog(SpaceInvaders.this, "Dare to Quit?");
 				if (result == JOptionPane.YES_OPTION) {
 					dispose();
 				}				
