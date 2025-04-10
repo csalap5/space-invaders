@@ -14,7 +14,8 @@ public class SpaceInvaders extends JFrame {
 	 */
 	public SpaceInvaders() {
 		setTitle("Window with Colors");
-		setLayout(new FlowLayout());
+		//setLayout(new FlowLayout());
+		
 		
 		var menubar = new JMenuBar();
 		setJMenuBar(menubar);
@@ -48,6 +49,13 @@ public class SpaceInvaders extends JFrame {
 					dispose();
 				}				
 			}
+		});
+		
+		add(new JPanel() {
+			{
+				setBackground(Color.BLACK);
+			}
+			
 		});
 	
 		setSize(700, 500);
