@@ -1,7 +1,10 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.net.URL;
 
 import javax.swing.*;
 /**
@@ -13,10 +16,8 @@ public class SpaceInvaders extends JFrame {
 	 * 
 	 */
 	public SpaceInvaders() {
-		setTitle("Window with Colors");
-		//setLayout(new FlowLayout());
-		
-		
+		setTitle("Space Invaders");
+
 		var menubar = new JMenuBar();
 		setJMenuBar(menubar);
 		
@@ -52,17 +53,50 @@ public class SpaceInvaders extends JFrame {
 		});
 		
 		add(new JPanel() {
+			private Image image = getImage("img_base.gif");
+			private int x = 325;
+			private int y = 420;
+
 			{
 				setBackground(Color.BLACK);
+				setFocusable(true);
+				addKeyListener( new KeyListener() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+					}
+					@Override
+					public void keyPressed(KeyEvent e) {
+						var code = e.getKeyCode();
+						if (code == KeyEvent.VK_LEFT) x -= 20;
+						if (code == KeyEvent.VK_RIGHT) x += 20;
+						repaint();
+					}
+					@Override
+					public void keyReleased(KeyEvent e) {
+						
+					}
+				}
+				);
+			}
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				var g2 = (Graphics2D) g;
+
+				g2.drawImage(image, x, y, null);
 			}
 			
 		});
 	
 		setSize(700, 500);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		
-		
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);		
+	}
+	private Image getImage(String filename) {
+		URL url = getClass().getResource("/" + filename);
+		ImageIcon icon = new ImageIcon(url);
+		return icon.getImage();
 	}
 	public static void main(String[] args) {
 		var v = new SpaceInvaders();
