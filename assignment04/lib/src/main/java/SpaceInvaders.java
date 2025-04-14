@@ -23,11 +23,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 /**
  * 
  */
 public class SpaceInvaders extends JFrame {
 	private static final long serialVersionUID = 1L;
+	private Timer timer;
 	/**
 	 * 
 	 */
@@ -70,8 +72,12 @@ public class SpaceInvaders extends JFrame {
 		
 		add(new JPanel() {
 			private Image image = getImage("img_base.gif");
+			private Clip sound = getSound("aud_basefire.wav");
 			private int x = 325;
 			private int y = 420;
+			boolean fired = false;
+			boolean right = false;
+			boolean left = false;
 
 			{
 				setBackground(Color.BLACK);
@@ -83,22 +89,35 @@ public class SpaceInvaders extends JFrame {
 					@Override
 					public void keyPressed(KeyEvent e) {
 						var code = e.getKeyCode();
-						if (code == KeyEvent.VK_LEFT) 
-							if (x > 20) {
-								x -= 20;
-							}
-						if (code == KeyEvent.VK_RIGHT) 
-							if (x < 650) {
-								x += 20;
-							}
+						if (code == KeyEvent.VK_LEFT) left = true;
+						if (code == KeyEvent.VK_RIGHT) right = true;
+						
+						if (code == KeyEvent.VK_SPACE) {
+							sound.setFramePosition(0);
+							sound.start();
+							fired = true;
+						}
 						repaint();
 					}
 					@Override
 					public void keyReleased(KeyEvent e) {
-						
+						var code = e.getKeyCode();
+//						if (code == KeyEvent.VK_SPACE)
+//							sound.stop();
+						if (code == KeyEvent.VK_LEFT) left = false;
+						if (code == KeyEvent.VK_RIGHT) right = false;
 					}
-				}
-				);
+				});
+				timer = new Timer(50, e -> {
+					if (fired) {
+						//rocket
+					}
+					if (right && x < 650) x += 20;
+					if (left && x > 20) x -= 20;
+					repaint();
+					
+				});
+				timer.start();
 			}
 
 			@Override
@@ -110,7 +129,12 @@ public class SpaceInvaders extends JFrame {
 			}
 			
 		});
-	
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				timer.stop();
+			}
+		});
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);		
@@ -123,7 +147,7 @@ public class SpaceInvaders extends JFrame {
 	private Clip getSound(String filename) {
 		Clip clip = null;
 		try {
-		InputStream in = getClass().getResourceAsStream( filename );
+		InputStream in = getClass().getResourceAsStream( "/" + filename );
 		InputStream buf = new BufferedInputStream( in );
 		AudioInputStream stream = AudioSystem.getAudioInputStream( buf );
 		clip = AudioSystem.getClip();
