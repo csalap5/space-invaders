@@ -4,8 +4,16 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 /**
  * 
@@ -103,6 +111,20 @@ public class SpaceInvaders extends JFrame {
 		URL url = getClass().getResource("/" + filename);
 		ImageIcon icon = new ImageIcon(url);
 		return icon.getImage();
+	}
+	private Clip getSound(String filename) {
+		Clip clip = null;
+		try {
+		InputStream in = getClass().getResourceAsStream( filename );
+		InputStream buf = new BufferedInputStream( in );
+		AudioInputStream stream = AudioSystem.getAudioInputStream( buf );
+		clip = AudioSystem.getClip();
+		clip.open( stream );
+		} catch (UnsupportedAudioFileException |
+		IOException | LineUnavailableException e) {
+		e.printStackTrace();
+		}
+		return clip;
 	}
 	public static void main(String[] args) {
 		var v = new SpaceInvaders();
