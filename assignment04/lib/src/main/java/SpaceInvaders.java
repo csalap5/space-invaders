@@ -67,8 +67,14 @@ public class SpaceInvaders extends JFrame {
 					@Override
 					public void keyPressed(KeyEvent e) {
 						var code = e.getKeyCode();
-						if (code == KeyEvent.VK_LEFT) x -= 20;
-						if (code == KeyEvent.VK_RIGHT) x += 20;
+						if (code == KeyEvent.VK_LEFT) 
+							if (x > 20) {
+								x -= 20;
+							}
+						if (code == KeyEvent.VK_RIGHT) 
+							if (x < 650) {
+								x += 20;
+							}
 						repaint();
 					}
 					@Override
