@@ -139,6 +139,7 @@ public class SpaceInvaders extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);		
 	}
+	//put in Drawable already(getSound and getImage)
 	private Image getImage(String filename) {
 		URL url = getClass().getResource("/" + filename);
 		ImageIcon icon = new ImageIcon(url);
