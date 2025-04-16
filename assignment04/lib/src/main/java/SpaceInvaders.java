@@ -74,7 +74,7 @@ public class SpaceInvaders extends JFrame {
 			private Image image = getImage("img_base.gif");
 			private Clip sound = getSound("aud_basefire.wav");
 			private int x = 325;
-			private int y = 420;
+			private int y = 430;
 			boolean fired = false;
 			boolean right = false;
 			boolean left = false;
