@@ -34,12 +34,12 @@ public abstract class Drawable {
 	protected void setY(int y) {
 		this.y = y;
 	}
-	private static Image getImage(String filename) {
+	protected static Image getImage(String filename) {
 		URL url = Drawable.class.getResource("/" + filename);
 		ImageIcon icon = new ImageIcon(url);
 		return icon.getImage();
 	}
-	private static Clip getSound(String filename) {
+	protected static Clip getSound(String filename) {
 		Clip clip = null;
 		try {
 		InputStream in = Drawable.class.getResourceAsStream( filename );
