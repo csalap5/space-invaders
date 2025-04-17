@@ -9,6 +9,7 @@ public class Base extends Ship {
 	public enum Move { RIGHT, LEFT }
 	
 	private Image image = Drawable.getImage("/img_base.gif");
+	private Image image2 = Drawable.getImage("/img_basehit.gif");
 	public Base(int x, int y) {
 		super(x, y);
 	}
