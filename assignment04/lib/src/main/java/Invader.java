@@ -7,5 +7,8 @@ public abstract class Invader extends Ship {
 		super(x , y);
 		this.points = points;
 	}
+	public void drawDestroyed() {
+		
+	}
 
 }

@@ -71,8 +71,7 @@ public class SpaceInvaders extends JFrame {
 		});
 		
 		add(new JPanel() {
-			private Image image = getImage("img_base.gif");
-			private Clip sound = getSound("aud_basefire.wav");
+
 			private int x = 325;
 			private int y = 430;
 			boolean fired = false;
@@ -140,25 +139,7 @@ public class SpaceInvaders extends JFrame {
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);		
 	}
 	//put in Drawable already(getSound and getImage)
-	private Image getImage(String filename) {
-		URL url = getClass().getResource("/" + filename);
-		ImageIcon icon = new ImageIcon(url);
-		return icon.getImage();
-	}
-	private Clip getSound(String filename) {
-		Clip clip = null;
-		try {
-		InputStream in = getClass().getResourceAsStream( "/" + filename );
-		InputStream buf = new BufferedInputStream( in );
-		AudioInputStream stream = AudioSystem.getAudioInputStream( buf );
-		clip = AudioSystem.getClip();
-		clip.open( stream );
-		} catch (UnsupportedAudioFileException |
-		IOException | LineUnavailableException e) {
-		e.printStackTrace();
-		}
-		return clip;
-	}
+	
 	public static void main(String[] args) {
 		var v = new SpaceInvaders();
 		v.setVisible(true);
