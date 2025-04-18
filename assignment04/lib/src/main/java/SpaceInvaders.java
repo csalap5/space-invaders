@@ -92,8 +92,8 @@ public class SpaceInvaders extends JFrame {
 						if (code == KeyEvent.VK_RIGHT) right = true;
 						
 						if (code == KeyEvent.VK_SPACE) {
-							sound.setFramePosition(0);
-							sound.start();
+//							sound.setFramePosition(0);
+//							sound.start();
 							fired = true;
 						}
 						repaint();
@@ -124,10 +124,10 @@ public class SpaceInvaders extends JFrame {
 				super.paintComponent(g);
 				var g2 = (Graphics2D) g;
 
-				g2.drawImage(image, x, y, null);
-			}
+//				g2.drawImage(image, x, y, null);
+//			}
 			
-		});
+//		});
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
