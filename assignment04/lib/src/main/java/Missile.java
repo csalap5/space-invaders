@@ -3,13 +3,13 @@ import java.awt.Graphics2D;
 
 import javax.sound.sampled.Clip;
 
-public class Photon extends Drawable {
+public class Missile extends Drawable {
 	private String glyph = "|";
 	private Font font = new Font("Arial", Font.BOLD, 25 );
 	private Clip  sound = Drawable.getSound( "/aud_basefire.wav" );
 	
-	public Photon(int x, int y) {
-		super(x, y, 25, 25);
+	public Missile(int x, int y) {
+		super(x, y, 2, 10);
 	}
 
 	@Override
@@ -20,12 +20,12 @@ public class Photon extends Drawable {
 		g2.drawString( glyph, x, y);
 
 	}
-	public Photon move() {
+	public Missile move() {
 		var y = getY() - 5;
 		setY( y );
 		return (y < -50) ? null : this;
 	}
-	public Photon fire() {
+	public Missile fire() {
 		sound.setFramePosition( 0 );
 		sound.start();
 		return this;

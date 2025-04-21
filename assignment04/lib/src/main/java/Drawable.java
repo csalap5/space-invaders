@@ -31,13 +31,25 @@ public abstract class Drawable {
 	public int getY() {
 		return y;
 	}
-	public abstract void draw(Graphics2D g2);
+	public int getW() {
+		return width;
+	}
+	public int getH() {
+		return height;
+	}
 	protected void setX(int x) {
 		this.x = x;
 	}
 	protected void setY(int y) {
 		this.y = y;
 	}
+	protected void setW(int w) {
+		width = w;
+	}
+	protected void setH(int h) {
+		height = h;
+	}
+	public abstract void draw(Graphics2D g2);
 	protected static Image getImage(String filename) {
 		URL url = Drawable.class.getResource("/" + filename);
 		ImageIcon icon = new ImageIcon(url);

@@ -31,10 +31,10 @@ public class Base extends Ship {
 		setX(x);
 		setY(y);
 	}
-	public Photon firePhoton() {
+	public Missile fireMissile() {
 		var x = getX();
 		var y = getY();
-		return new Photon( x+25, y).fire();
+		return new Missile( x+25, y).fire();
 	}
 
 }

@@ -7,6 +7,6 @@ public abstract class Ship extends Drawable {
 		super(x, y, w, h);
 	}
 	
-	public abstract Photon firePhoton();
+	public abstract Missile fireMissile();
 	
 }
