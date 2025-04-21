@@ -7,7 +7,6 @@ import javax.sound.sampled.Clip;
 public class Missile extends Drawable {
 	private String glyph = "|";
 	private Font font = new Font("Arial", Font.BOLD, 25 );
-	private Clip  sound = Drawable.getSound( "/aud_basefire.wav" );
 	
 	public Missile(int x, int y) {
 		super(x, y, 2, 10);
@@ -28,8 +27,8 @@ public class Missile extends Drawable {
 		return (y < -50) ? null : this;
 	}
 	public Missile fire() {
-		sound.setFramePosition( 0 );
-		sound.start();
+//		sound.setFramePosition( 0 );
+//		sound.start();
 		return this;
 	}
 

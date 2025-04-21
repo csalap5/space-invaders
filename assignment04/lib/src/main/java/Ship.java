@@ -1,4 +1,5 @@
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,8 +13,21 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public abstract class Ship extends Drawable {
 	
+	private boolean isHit = false;
+	private Clip sound;
+	private Image hitImage;
+	
 	protected Ship(int x, int y, int w, int h) {
 		super(x, y, w, h);
+	}
+	
+	public boolean isItHit() {
+		return isHit;
+	}
+	
+	public void setHit() {
+		isHit = true;
+		//play the sound
 	}
 	
 	public abstract Missile fireMissile();
