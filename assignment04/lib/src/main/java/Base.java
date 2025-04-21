@@ -34,7 +34,7 @@ public class Base extends Ship {
 	public Photon firePhoton() {
 		var x = getX();
 		var y = getY();
-		return new Photon( x+25, y ).fire();
+		return new Photon( x+25, y).fire();
 	}
 
 }
