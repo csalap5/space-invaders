@@ -27,8 +27,8 @@ import javax.swing.Timer;
 /**
  * 
  */
+@SuppressWarnings("serial")
 public class SpaceInvaders extends JFrame {
-	private static final long serialVersionUID = 1L;
 	private Timer timer;
 	/**
 	 * 
