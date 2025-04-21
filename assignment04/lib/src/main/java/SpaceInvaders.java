@@ -58,7 +58,8 @@ public class SpaceInvaders extends JFrame {
 				dispose();
 			}
 		});
-		about.addActionListener(e -> JOptionPane.showMessageDialog(this, "Space Invaders:"+ "\n" + "By Carter Salapka and Kevin Farnsworth"));
+		about.addActionListener(e -> JOptionPane.showMessageDialog(this, 
+				"Space Invaders:"+ "\n" + "By Carter Salapka and Kevin Farnsworth"));
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -123,30 +124,30 @@ public class SpaceInvaders extends JFrame {
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				var g2 = (Graphics2D) g;
-
-//				g2.drawImage(image, x, y, null);
 //			}
+//				g2.drawImage(image, x, y, null);
+			}
 			
-//		});
+		});
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				timer.stop();
 			}
 		});
-		setSize(700, 500);
+		setSize(500, 450);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);		
 	}
-	//put in Drawable already(getSound and getImage)
 	
 	public static void main(String[] args) {
 		var v = new SpaceInvaders();
 		v.setVisible(true);
-
 	}
-
 }
+
+
 
 	
 

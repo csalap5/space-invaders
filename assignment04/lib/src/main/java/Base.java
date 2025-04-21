@@ -10,8 +10,8 @@ public class Base extends Ship {
 	
 	private Image image = Drawable.getImage("/img_base.gif");
 	private Image image2 = Drawable.getImage("/img_basehit.gif");
-	public Base(int x, int y) {
-		super(x, y);
+	public Base(int x, int y, int w, int h) {
+		super(x, y, w, h);
 	}
 	@Override
 	public void draw(Graphics2D g2) {

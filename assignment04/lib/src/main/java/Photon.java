@@ -9,7 +9,7 @@ public class Photon extends Drawable {
 	private Clip  sound = Drawable.getSound( "/aud_basefire.wav" );
 	
 	public Photon(int x, int y) {
-		super(x, y);
+		super(x, y, 25, 25);
 	}
 
 	@Override
