@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
@@ -17,6 +18,7 @@ public class Missile extends Drawable {
 		var x = getX();
 		var y = getY();
 		g2.setFont(font);
+		g2.setColor(Color.WHITE);
 		g2.drawString( glyph, x, y);
 
 	}

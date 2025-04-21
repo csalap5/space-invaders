@@ -55,19 +55,10 @@ public abstract class Drawable {
 		ImageIcon icon = new ImageIcon(url);
 		return icon.getImage();
 	}
-	protected static Clip getSound(String filename) {
-		Clip clip = null;
-		try {
-		InputStream in = Drawable.class.getResourceAsStream( filename );
-		InputStream buf = new BufferedInputStream( in );
-		AudioInputStream stream = AudioSystem.getAudioInputStream( buf );
-		clip = AudioSystem.getClip();
-		clip.open( stream );
-		} catch (UnsupportedAudioFileException |
-		IOException | LineUnavailableException e) {
-		e.printStackTrace();
-		}
-		return clip;
+	//defaults as a public method
+	public void move(int pixels, int direction) {
+		//initial thought to use int for direction (0 for up, etc.) or bitwise (0001, 0010, 0100, 1000)
+		return;
 	}
 	
 }
