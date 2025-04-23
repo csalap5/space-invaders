@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import javax.sound.sampled.Clip;
 
 public class Missile extends Drawable {
-	private String glyph = "|";
+//	private String glyph = "|";
 	private Font font = new Font("Arial", Font.BOLD, 25 );
 	
 	public Missile(int x, int y) {
@@ -18,7 +18,7 @@ public class Missile extends Drawable {
 		var y = getY();
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
-		g2.drawString( glyph, x, y);
+		g2.drawString( "|", x, y);
 
 	}
 	public Missile move() {

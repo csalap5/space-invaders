@@ -5,6 +5,7 @@ public class InvaderTop extends Invader {
 	public InvaderTop(int x, int y, int w, int h) {
 		super(x, y, w, h, 30);
 	}
+	
 	@Override
 	public Missile fireMissile() {
 		// TODO Auto-generated method stub
