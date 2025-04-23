@@ -34,6 +34,7 @@ public class SpaceInvaders extends JFrame {
 	 * 
 	 */
 	public SpaceInvaders() {
+//		timer.start();
 		setTitle("Space Invaders");
 
 		var menubar = new JMenuBar();
@@ -148,7 +149,8 @@ public class SpaceInvaders extends JFrame {
 		setSize(500, 450);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);		
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);	
+//		timer.stop();
 	}
 	
 	public static void main(String[] args) {
