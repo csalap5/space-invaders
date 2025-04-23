@@ -14,11 +14,16 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public abstract class Ship extends Drawable {
 	
 	private boolean isHit = false;
-	private Clip sound;
-	private Image hitImage;
+	private final Clip hitSound = Ship.getSound("aud_hit.wav");
+	protected Clip sound;
+	protected Image normImage;
+	protected Image hitImage;
 	
 	protected Ship(int x, int y, int w, int h) {
 		super(x, y, w, h);
+//		this.normImage = normImage;
+//		this.sound=sound;
+//		this.hitImage=hitImage;
 	}
 	
 	public boolean isItHit() {
@@ -29,8 +34,6 @@ public abstract class Ship extends Drawable {
 		sound.start();
 		isHit = true;
 	}
-	
-	public abstract Missile fireMissile();
 	
 	protected static Clip getSound(String filename) {
 		Clip clip = null;
