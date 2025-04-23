@@ -72,7 +72,7 @@ public class SpaceInvaders extends JFrame {
 		});
 		
 		add(new JPanel() {
-//			Base b = new Base(100,100,100,100); for testing
+			Base b = new Base(100,100,100,100); //for testing
 			private int x = 325;
 			private int y = 430;
 			boolean fired = false;
@@ -124,7 +124,7 @@ public class SpaceInvaders extends JFrame {
 				super.paintComponent(g);
 				var g2 = (Graphics2D) g;
 				
-//				b.draw(g2); for testing
+				b.draw(g2); //for testing
 //			}
 //				g2.drawImage(image, x, y, null);
 			}

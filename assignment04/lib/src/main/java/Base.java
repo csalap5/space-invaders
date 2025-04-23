@@ -8,9 +8,9 @@ public class Base extends Ship {
 	
 	public enum Move { RIGHT, LEFT }
 	
-	private Image image = Drawable.getImage("/img_base.gif");
-	private Image image2 = Drawable.getImage("/img_basehit.gif");
-	private Clip  sound = Ship.getSound( "/aud_basefire.wav" );
+	private Image image = Drawable.getImage("img_base.gif");
+	private Image image2 = Drawable.getImage("img_basehit.gif");
+	private Clip  sound = Ship.getSound( "aud_basefire.wav" );
 	
 	public Base(int x, int y, int w, int h) {
 		super(x, y, w, h);
