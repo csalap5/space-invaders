@@ -21,18 +21,6 @@ public class Base extends Ship {
 		var y = getY();
 		g2.drawImage(image, x, y, null);
 	}
-	public void move(Set<Move> moves) {
-		var x = getX();
-		var y = getY();
-		for (var move : moves) {
-			switch (move) {
-			case RIGHT -> x += 20;
-			case LEFT  -> x -= 20;
-			}
-		}
-		setX(x);
-		setY(y);
-	}
 	public Missile fireMissile() {
 		var x = getX();
 		var y = getY();

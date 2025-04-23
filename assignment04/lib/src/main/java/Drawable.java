@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Set;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -13,7 +14,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 
 public abstract class Drawable {
-
+	
+	public enum Move { UP, DOWN, RIGHT, LEFT }
+	
 	private int x;
 	private int y;
 	private int width;
@@ -55,10 +58,19 @@ public abstract class Drawable {
 		ImageIcon icon = new ImageIcon(url);
 		return icon.getImage();
 	}
-	//defaults as a public method
-	public void move(int pixels, int direction) {
-		//initial thought to use int for direction (0 for up, etc.) or bitwise (0001, 0010, 0100, 1000)
-		return;
+	public void move(Set<Move> moves) {
+		var x = getX();
+		var y = getY();
+		for (var move : moves) {
+			switch (move) {
+			case UP    -> y -= 20;
+			case DOWN  -> y += 20;
+			case RIGHT -> x += 20;
+			case LEFT  -> x -= 20;
+			}
+		}
+		setX(x);
+		setY(y);
 	}
 	
 }

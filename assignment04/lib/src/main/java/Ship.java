@@ -26,8 +26,8 @@ public abstract class Ship extends Drawable {
 	}
 	
 	public void setHit() {
+		sound.start();
 		isHit = true;
-		//play the sound
 	}
 	
 	public abstract Missile fireMissile();

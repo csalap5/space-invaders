@@ -78,7 +78,6 @@ public class SpaceInvaders extends JFrame {
 			boolean fired = false;
 			boolean right = false;
 			boolean left = false;
-
 			{
 				setBackground(Color.BLACK);
 				setFocusable(true);
