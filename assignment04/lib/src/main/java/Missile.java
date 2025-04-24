@@ -31,5 +31,9 @@ public class Missile extends Drawable {
 //		sound.start();
 		return this;
 	}
+	public boolean isOutOfBounds() {
+		var y = getY();
+		return y < 0 || y > 500;
+	}
 
 }
