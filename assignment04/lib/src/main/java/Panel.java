@@ -30,10 +30,42 @@ public class Panel extends JPanel implements KeyListener{
 		invaders = new ArrayList<>();
         missiles = new ArrayList<>();
         
-        invaders.add(new InvaderTop(100,200,150,150));
-        invaders.add(new InvaderMiddle(100, 400, 150, 150));
-        invaders.add(new InvaderBottom(300, 200, 150, 150));
-        invaders.add(new Mystery(20, 300, 150, 150));
+        int rows = 5;
+        int columns = 10;
+        int startX = 100;
+        int startY = 100;
+        int horizontalSpace = 30;
+        int verticalSpace = 30;
+        
+        for (int row = 0; row < rows; row++) {
+        	for (int col = 0; col < columns; col++) {
+        		int x = startX + col * horizontalSpace;
+        		int y = startY + row * verticalSpace;
+        		Invader inv;
+        		if (row == 0) {
+        			inv = new InvaderTop(x, y, 60, 60);
+        		}
+        		else if (row == 1) {
+        			inv = new InvaderMiddle(x, y, 60, 60);
+        		}
+        		else if (row == 2) {
+        			inv = new InvaderMiddle(x, y, 60, 60);
+        		}
+        		else if (row == 3) {
+        			inv = new InvaderBottom(x, y, 60, 60);
+        		}
+        		else {
+        			inv = new InvaderBottom(x, y, 60, 60);
+        		}
+        		invaders.add(inv);
+        	}
+        }
+        
+        
+//        invaders.add(new InvaderTop(100,200,150,150));
+//        invaders.add(new InvaderMiddle(100, 400, 150, 150));
+//        invaders.add(new InvaderBottom(300, 200, 150, 150));
+//        invaders.add(new Mystery(20, 300, 150, 150));
         
         timer = new Timer(50, e -> gameLoop());
         timer.start();
