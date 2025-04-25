@@ -20,8 +20,8 @@ public class Panel extends JPanel implements KeyListener{
 	private Base base;
 	private List<Invader> invaders;
 	private List<Missile> missiles;
-	private int invaderX = 5;
-	private int invaderY = 10;
+	private int invaderX = 1;
+	private int invaderY = 3;
 	
 	public Panel() {
 		setBackground(Color.BLACK);
@@ -36,7 +36,7 @@ public class Panel extends JPanel implements KeyListener{
         int columns = 10;
         int startX = 100;
         int startY = 100;
-        int horizontalSpace = 30;
+        int horizontalSpace = 40;
         int verticalSpace = 30;
         
         for (int row = 0; row < rows; row++) {
@@ -86,7 +86,7 @@ public class Panel extends JPanel implements KeyListener{
         for (Invader i : invaders) {
         	i.setX(i.getX() + invaderX);
         	
-        	if (i.getX() <= 0 || i.getX() + i.getW() >= getWidth()) {
+        	if (i.getX() <= 0 || i.getX() + 30 >= getWidth()) {
         		bounce = true;
         	}
         }
