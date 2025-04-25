@@ -1,4 +1,3 @@
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.IOException;
