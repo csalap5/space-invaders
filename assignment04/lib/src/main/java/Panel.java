@@ -22,6 +22,7 @@ public class Panel extends JPanel implements KeyListener{
 	private List<Missile> missiles;
 	private int invaderX = 1;
 	private int invaderY = 3;
+	private int imgPause = 0;
 	
 	public Panel() {
 		setBackground(Color.BLACK);
@@ -66,6 +67,14 @@ public class Panel extends JPanel implements KeyListener{
 	}
 	
 	private void gameLoop() {
+		imgPause++;
+		if (imgPause >= 10) {
+			for (Invader in : invaders) {
+				in.swapImages();
+			}
+			imgPause = 0;
+		}
+		
 		if (right && base.getX() < getWidth()-40) {
 			base.setX(base.getX()+20);
 		}
@@ -85,6 +94,7 @@ public class Panel extends JPanel implements KeyListener{
         boolean bounce = false;
         for (Invader i : invaders) {
         	i.setX(i.getX() + invaderX);
+        	//i.swapImages();
         	
         	if (i.getX() <= 0 || i.getX() + 30 >= getWidth()) {
         		bounce = true;

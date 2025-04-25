@@ -17,6 +17,7 @@ public abstract class Ship extends Drawable {
 	private final Clip hitSound = Ship.getSound("aud_hit.wav");
 	protected Clip sound;
 	protected Image normImage;
+	protected Image swapImage;
 	protected Image hitImage;
 	
 	protected Ship(int x, int y, int w, int h) {

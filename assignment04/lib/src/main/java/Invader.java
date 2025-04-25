@@ -3,6 +3,7 @@ import java.awt.Image;
 
 public abstract class Invader extends Ship {
 	private int points;
+	private boolean swapped;
 //	private Image hitImage = Drawable.getImage("img_invaderhit.gif");
 	public Invader(int x, int y, int w, int h, int points) {
 		super(x , y, w, h);
@@ -17,8 +18,19 @@ public abstract class Invader extends Ship {
 	public void draw(Graphics2D g2) {
 		var x = getX();
 		var y = getY();
-		g2.drawImage(normImage, x, y, null);
+		Image current;
+		if (swapped) {
+			current = normImage;
+		}
+		else {
+			current = swapImage;
+		}
+		g2.drawImage(current, x, y, null);
 	}
+	public void swapImages() {
+		swapped = !swapped;
+	}
+	
 
 }
 
