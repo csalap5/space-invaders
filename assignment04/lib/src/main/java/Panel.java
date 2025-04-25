@@ -20,6 +20,8 @@ public class Panel extends JPanel implements KeyListener{
 	private Base base;
 	private List<Invader> invaders;
 	private List<Missile> missiles;
+	private int invaderX = 5;
+	private int invaderY = 10;
 	
 	public Panel() {
 		setBackground(Color.BLACK);
@@ -42,31 +44,22 @@ public class Panel extends JPanel implements KeyListener{
         		int x = startX + col * horizontalSpace;
         		int y = startY + row * verticalSpace;
         		Invader inv;
-        		if (row == 0) {
-        			inv = new InvaderTop(x, y, 60, 60);
-        		}
-        		else if (row == 1) {
-        			inv = new InvaderMiddle(x, y, 60, 60);
-        		}
-        		else if (row == 2) {
-        			inv = new InvaderMiddle(x, y, 60, 60);
-        		}
-        		else if (row == 3) {
-        			inv = new InvaderBottom(x, y, 60, 60);
-        		}
-        		else {
-        			inv = new InvaderBottom(x, y, 60, 60);
-        		}
+        		switch (row) {
+            case 0 -> inv = new InvaderTop(x, y, 60, 60);
+  
+            case 1 -> inv = new InvaderMiddle(x, y, 60, 60);
+  
+            case 2 -> inv = new InvaderMiddle(x, y, 60, 60);
+          		
+            case 3 -> inv = new InvaderBottom(x, y, 60, 60);
+            
+            default -> inv = new InvaderBottom(x, y, 60, 60);
+          		
+          }
         		invaders.add(inv);
         	}
         }
-        
-        
-//        invaders.add(new InvaderTop(100,200,150,150));
-//        invaders.add(new InvaderMiddle(100, 400, 150, 150));
-//        invaders.add(new InvaderBottom(300, 200, 150, 150));
-//        invaders.add(new Mystery(20, 300, 150, 150));
-        
+               
         timer = new Timer(50, e -> gameLoop());
         timer.start();
 
@@ -85,10 +78,24 @@ public class Panel extends JPanel implements KeyListener{
         	if (m.isOutOfBounds()) {
         		toRemove.add(m);
         	}
-        	//something to remove missile if it leaves the screen?
         }
         
         missiles.removeAll(toRemove);
+        
+        boolean bounce = false;
+        for (Invader i : invaders) {
+        	i.setX(i.getX() + invaderX);
+        	
+        	if (i.getX() <= 0 || i.getX() + i.getW() >= getWidth()) {
+        		bounce = true;
+        	}
+        }
+        if (bounce) {
+        	invaderX = -invaderX;
+        	for (Invader i : invaders) {
+            	i.setY(i.getY() + invaderY);       
+            }
+        }
         repaint(); 
 	}
 	
