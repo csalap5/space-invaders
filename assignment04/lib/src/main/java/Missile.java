@@ -6,10 +6,10 @@ import javax.sound.sampled.Clip;
 
 public class Missile extends Drawable {
 //	private String glyph = "|";
-	private Font font = new Font("Arial", Font.BOLD, 25 );
+	private Font font = new Font("Arial", Font.BOLD, 15 );
 	
 	public Missile(int x, int y) {
-		super(x, y, 2, 10);
+		super(x, y, .2, 2);
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class Missile extends Drawable {
 
 	}
 	public Missile move() {
-		var y = getY() - 5;
+		var y = getY() - 20;
 		setY( y );
 		return (y < -50) ? null : this;
 	}

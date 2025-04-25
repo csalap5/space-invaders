@@ -150,7 +150,7 @@ public class SpaceInvaders extends JFrame {
 //				timer.stop();
 //			}
 //		});
-		setSize(500, 450);
+		setSize(500, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);	

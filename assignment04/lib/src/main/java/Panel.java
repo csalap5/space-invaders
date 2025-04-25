@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements KeyListener{
 	private Timer timer;
-	private int x =325;
-	private int y = 430;
+	//private int x =325;
+	//private int y = 430;
 	private boolean fired = false;
 	private boolean right = false;
 	private boolean left = false;
@@ -27,7 +27,7 @@ public class Panel extends JPanel implements KeyListener{
         setFocusable(true);
         addKeyListener(this);
         
-        base = new Base(250,380,100,100);
+        base = new Base(325,430,100,100);
 		invaders = new ArrayList<>();
         missiles = new ArrayList<>();
         
@@ -42,13 +42,11 @@ public class Panel extends JPanel implements KeyListener{
 	}
 	
 	private void gameLoop() {
-		if (right && x < getWidth() - 50) {
-			x += 10;
-			System.out.println("Moving right: " + x);
+		if (right && base.getX() < getWidth()-40) {
+			base.setX(base.getX()+20);
 		}
-        if (left && x > 0) {
-        	x -= 10;
-        	System.out.println("Moving left: " + x);
+        if (left && base.getX() > 20) {
+        	base.setX(base.getX()-20);
         }
         List<Missile> toRemove = new ArrayList<>();
         for (Missile m : missiles) {
@@ -59,11 +57,11 @@ public class Panel extends JPanel implements KeyListener{
         	//something to remove missile if it leaves the screen?
         }
         missiles.removeAll(toRemove);
-        repaint();  
+        repaint(); 
 	}
 	
 	public void fireMissile() {
-		missiles.add(new Missile(x + 25, y - 10));
+		missiles.add(new Missile(base.getX() + 10, base.getY() ));
 	}
 	
 	 @Override

@@ -19,10 +19,10 @@ public abstract class Drawable {
 	
 	private int x;
 	private int y;
-	private int width;
+	private double width;
 	private int height;
 	
-	public Drawable(int x, int y, int w, int h) {
+	public Drawable(int x, int y, double w, int h) {
 		this.x = x;
 		this.y = y;
 		this.width = w;
@@ -34,7 +34,7 @@ public abstract class Drawable {
 	public int getY() {
 		return y;
 	}
-	public int getW() {
+	public double getW() {
 		return width;
 	}
 	public int getH() {
@@ -46,7 +46,7 @@ public abstract class Drawable {
 	protected void setY(int y) {
 		this.y = y;
 	}
-	protected void setW(int w) {
+	protected void setW(double w) {
 		width = w;
 	}
 	protected void setH(int h) {
