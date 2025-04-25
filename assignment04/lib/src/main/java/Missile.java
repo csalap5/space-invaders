@@ -27,8 +27,7 @@ public class Missile extends Drawable {
 		return (y < -50) ? null : this;
 	}
 	public Missile fire() {
-//		sound.setFramePosition( 0 );
-//		sound.start();
+
 		return this;
 	}
 	public boolean isOutOfBounds() {

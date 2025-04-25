@@ -14,7 +14,6 @@ public class Panel extends JPanel implements KeyListener{
 	private Timer timer;
 	//private int x =325;
 	//private int y = 430;
-	private boolean fired = false;
 	private boolean right = false;
 	private boolean left = false;
 	
@@ -56,6 +55,7 @@ public class Panel extends JPanel implements KeyListener{
         	}
         	//something to remove missile if it leaves the screen?
         }
+        
         missiles.removeAll(toRemove);
         repaint(); 
 	}
@@ -87,18 +87,17 @@ public class Panel extends JPanel implements KeyListener{
 		if (code == KeyEvent.VK_LEFT) left = true;
 		if (code == KeyEvent.VK_RIGHT) right = true;
 		
-		if (code == KeyEvent.VK_SPACE) {
-//			sound.setFramePosition(0);
-//			sound.start();
-			fired = true;
+		if (code == KeyEvent.VK_SPACE && missiles.isEmpty()) {
+			base.sound.setFramePosition(0);
+			base.sound.start();
+
 			fireMissile();
 		}
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 		var code = e.getKeyCode();
-		if (code == KeyEvent.VK_SPACE);
-//			sound.stop();
+		if (code == KeyEvent.VK_SPACE) base.sound.stop();
 		if (code == KeyEvent.VK_LEFT) left = false;
 		if (code == KeyEvent.VK_RIGHT) right = false;
 	}

@@ -27,6 +27,8 @@ public class Base extends Ship {
 	public Missile fireMissile() {
 		var x = getX();
 		var y = getY();
+//		sound.setFramePosition(0);
+//		sound.start();
 		return new Missile( x+25, y).fire();
 	}
 	
