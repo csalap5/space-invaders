@@ -1,35 +1,18 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+
 /**
  * 
  */
 @SuppressWarnings("serial")
 public class SpaceInvaders extends JFrame {
-	private Timer timer;
+	private Panel panel;
 	/**
 	 * 
 	 */
@@ -54,8 +37,31 @@ public class SpaceInvaders extends JFrame {
 		game.addSeparator();
 		var exit = game.add("Quit");
 		
-		Panel panel = new Panel();
+		panel = new Panel();
 		add(panel);
+		
+		pause.addActionListener(e -> {
+			panel.pauseGame();
+			JOptionPane.showMessageDialog(this, "Game Paused. Click Resume to Continue.");
+		});
+		
+		resume.addActionListener(e -> panel.resumeGame());
+		
+		newGame.addActionListener(e -> {
+			panel.pauseGame();
+			var result = JOptionPane.showConfirmDialog(this, "Start a New Game?", "New Game", JOptionPane.YES_NO_OPTION);
+			if (result == JOptionPane.YES_OPTION) {
+				remove(panel);
+				panel.pauseGame();
+				panel = new Panel();
+				add(panel);
+				revalidate();
+				repaint();
+			}
+			else {
+				panel.resumeGame();
+			}
+		});
 		
 		exit.addActionListener(e -> {
 			var result = JOptionPane.showConfirmDialog(this, "Do you want to exit?");
@@ -83,7 +89,8 @@ public class SpaceInvaders extends JFrame {
 		setSize(500, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);	
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
 		
 	}
 	

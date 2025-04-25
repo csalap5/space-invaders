@@ -4,7 +4,6 @@ import java.awt.Image;
 public abstract class Invader extends Ship {
 	private int points;
 	private boolean swapped;
-//	private Image hitImage = Drawable.getImage("img_invaderhit.gif");
 	public Invader(int x, int y, int w, int h, int points) {
 		super(x , y, w, h);
 		this.points = points;
