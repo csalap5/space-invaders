@@ -86,14 +86,16 @@ public class SpaceInvaders extends JFrame {
 
 		
 		
-		setSize(500, 500);
+		setSize(500, 450);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		
 	}
-	
+	/*
+	 * 
+	 */
 	public static void main(String[] args) {
 		var v = new SpaceInvaders();
 		v.setVisible(true);

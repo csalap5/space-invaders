@@ -12,52 +12,91 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-
+/*
+ * 
+ */
 public abstract class Drawable {
-	
+	/*
+	 * 
+	 */
 	public enum Move { UP, DOWN, RIGHT, LEFT }
 	
 	private int x;
 	private int y;
 	private double width;
 	private int height;
-	
+	/*
+	 * 
+	 */
 	public Drawable(int x, int y, double w, int h) {
 		this.x = x;
 		this.y = y;
 		this.width = w;
 		this.height = h;
 	}
+	/*
+	 * 
+	 */
 	public int getX() {
 		return x;
 	}
+	/*
+	 * 
+	 */
 	public int getY() {
 		return y;
 	}
+	/*
+	 * 
+	 */
 	public double getW() {
 		return width;
 	}
+	/*
+	 * 
+	 */
 	public int getH() {
 		return height;
 	}
+	/*
+	 * 
+	 */
 	protected void setX(int x) {
 		this.x = x;
 	}
+	/*
+	 * 
+	 */
 	protected void setY(int y) {
 		this.y = y;
 	}
+	/*
+	 * 
+	 */
 	protected void setW(double w) {
 		width = w;
 	}
+	/*
+	 * 
+	 */
 	protected void setH(int h) {
 		height = h;
 	}
+	/*
+	 * 
+	 */
 	public abstract void draw(Graphics2D g2);
+	/*
+	 * 
+	 */
 	protected static Image getImage(String filename) {
 		URL url = Drawable.class.getResource("/" + filename);
 		ImageIcon icon = new ImageIcon(url);
 		return icon.getImage();
 	}
+	/*
+	 * 
+	 */
 	public void move(Set<Move> moves) {
 		var x = getX();
 		var y = getY();

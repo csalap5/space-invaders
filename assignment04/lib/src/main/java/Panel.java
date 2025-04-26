@@ -8,7 +8,9 @@ import java.util.List;
 import javax.swing.Timer;
 
 import javax.swing.JPanel;
-
+/*
+ * 
+ */
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements KeyListener{
 	private Timer timer;
@@ -20,25 +22,27 @@ public class Panel extends JPanel implements KeyListener{
 	private Base base;
 	private List<Invader> invaders;
 	private List<Missile> missiles;
-	private int invaderX = 1;
-	private int invaderY = 3;
+	private int invaderX = 2;
+	private int invaderY = 12;
 	private int imgPause = 0;
-	
+	/*
+	 * 
+	 */
 	public Panel() {
 		setBackground(Color.BLACK);
         setFocusable(true);
         addKeyListener(this);
         
-        base = new Base(325,430,100,100);
+        base = new Base(325,380,100,100);
 		invaders = new ArrayList<>();
         missiles = new ArrayList<>();
         
         int rows = 5;
         int columns = 10;
-        int startX = 100;
-        int startY = 100;
-        int horizontalSpace = 40;
-        int verticalSpace = 30;
+        int startX = 50;
+        int startY = 80;
+        int horizontalSpace = 35;
+        int verticalSpace = 25;
         
         for (int row = 0; row < rows; row++) {
         	for (int col = 0; col < columns; col++) {
@@ -94,7 +98,6 @@ public class Panel extends JPanel implements KeyListener{
         boolean bounce = false;
         for (Invader i : invaders) {
         	i.setX(i.getX() + invaderX);
-        	//i.swapImages();
         	
         	if (i.getX() <= 0 || i.getX() + 30 >= getWidth()) {
         		bounce = true;
@@ -108,12 +111,16 @@ public class Panel extends JPanel implements KeyListener{
         }
         repaint(); 
 	}
-	
+	/*
+	 * 
+	 */
 	public void fireMissile() {
 		missiles.add(new Missile(base.getX() + 10, base.getY() ));
 	}
-	
-	 @Override
+	/*
+	 * 
+	 */
+	@Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -125,11 +132,15 @@ public class Panel extends JPanel implements KeyListener{
         	m.draw(g2);
         }
     }
-	
+	/*
+	 * 
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {	
 	}
-	
+	/*
+	 * 
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		var code = e.getKeyCode();
@@ -143,6 +154,9 @@ public class Panel extends JPanel implements KeyListener{
 			fireMissile();
 		}
 	}
+	/*
+	 * 
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		var code = e.getKeyCode();
@@ -150,10 +164,15 @@ public class Panel extends JPanel implements KeyListener{
 		if (code == KeyEvent.VK_LEFT) left = false;
 		if (code == KeyEvent.VK_RIGHT) right = false;
 	}
-	
+	/*
+	 * 
+	 */
 	public void pauseGame() {
 	    timer.stop();
 	}
+	/*
+	 * 
+	 */
 	public void resumeGame() {
 	    timer.start();
 	}
