@@ -35,6 +35,11 @@ public class Panel extends JPanel implements KeyListener{
 	private int invaderPulseLimit = 40;
 	private int mysteryPulseLimit = 2;
 	
+	private Mystery mysteryShip;
+	private boolean mysteryShipActive = false;
+	private int mysteryShipSpawnCounter = 0;
+	private int mysteryShipSpawnLimit = 3000;
+	
 	/*
 	 * 
 	 */
@@ -86,13 +91,36 @@ public class Panel extends JPanel implements KeyListener{
 	    invaderPulseCounter++;
 	    mysteryPulseCounter++;
 		imgPause++;
+		mysteryShipSpawnCounter++;
 		
-//		if (imgPause >= 10) {
-//			for (Invader in : invaders) {
-//				in.swapImages();
-//			}
-//			imgPause = 0;
-//		}
+		if (!mysteryShipActive) {
+			double random = Math.random();
+			if (random > 0.997) {
+				boolean goingRight = Math.random() < 0.5;
+				if (goingRight) {
+					mysteryShip = new Mystery(-60, 50, 60, 30);
+					mysteryShip.setSpeed(5);
+				}
+				else {
+					mysteryShip = new Mystery(getWidth(), 50, 60, 30);
+					mysteryShip.setSpeed(-5);
+				}
+				mysteryShip.playSound();
+				mysteryShipActive = true;
+			}
+			mysteryShip = new Mystery(-60, 50, 60, 30);
+			mysteryShipActive = true;
+			mysteryShipSpawnCounter = 0;
+		}	
+		
+		if (mysteryShipActive && mysteryPulseCounter >= mysteryPulseLimit) {
+		    mysteryShip.move();
+		    if (mysteryShip.getX() < -60 || mysteryShip.getX() > + 60) {
+		    	mysteryShipActive = false;
+		    	//stop sound
+		    }
+		mysteryPulseCounter = 0;
+		}
 		if (basePulseCounter >= basePulseLimit) {
 			if (right && base.getX() < getWidth()-40) {
 				base.setX(base.getX()+5);
@@ -158,6 +186,9 @@ public class Panel extends JPanel implements KeyListener{
         for (Missile m : missiles) {
         	m.draw(g2);
         }
+        if (mysteryShipActive) {
+        	mysteryShip.draw(g2);
+        }
     }
 	/*
 	 * 
@@ -203,8 +234,5 @@ public class Panel extends JPanel implements KeyListener{
 	public void resumeGame() {
 	    timer.start();
 	}
-	
-	
-	
 	
 }
