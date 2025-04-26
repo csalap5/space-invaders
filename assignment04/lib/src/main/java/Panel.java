@@ -232,7 +232,7 @@ public class Panel extends JPanel implements KeyListener{
 		if (code == KeyEvent.VK_LEFT) left = true;
 		if (code == KeyEvent.VK_RIGHT) right = true;
 		
-		if (code == KeyEvent.VK_SPACE && missiles.isEmpty()) {
+		if (code == KeyEvent.VK_SPACE && countPlayerMissiles() < 1) {
 			base.sound.setFramePosition(0);
 			base.sound.start();
 
@@ -285,4 +285,13 @@ public class Panel extends JPanel implements KeyListener{
 	      }
 	      return bottom;
 	  }
+	private int countPlayerMissiles() {
+	    int count = 0;
+	    for (Missile m : missiles) {
+	        if (!m.isFromInvader()) {
+	            count++;
+	        }
+	    }
+	    return count;
+	}
 }
