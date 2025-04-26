@@ -25,6 +25,16 @@ public class Panel extends JPanel implements KeyListener{
 	private int invaderX = 2;
 	private int invaderY = 12;
 	private int imgPause = 0;
+	
+	private int basePulseCounter;
+	private int missilePulseCounter;
+	private int invaderPulseCounter;
+	private int mysteryPulseCounter;
+	private int basePulseLimit = 1;
+	private int missilePulseLimit = 1;
+	private int invaderPulseLimit = 40;
+	private int mysteryPulseLimit = 2;
+	
 	/*
 	 * 
 	 */
@@ -65,50 +75,67 @@ public class Panel extends JPanel implements KeyListener{
         	}
         }
                
-        timer = new Timer(50, e -> gameLoop());
+        timer = new Timer(10, e -> gameLoop());
         timer.start();
 
 	}
 	
 	private void gameLoop() {
+	    basePulseCounter++;
+	    missilePulseCounter++;
+	    invaderPulseCounter++;
+	    mysteryPulseCounter++;
 		imgPause++;
-		if (imgPause >= 10) {
-			for (Invader in : invaders) {
-				in.swapImages();
+		
+//		if (imgPause >= 10) {
+//			for (Invader in : invaders) {
+//				in.swapImages();
+//			}
+//			imgPause = 0;
+//		}
+		if (basePulseCounter >= basePulseLimit) {
+			if (right && base.getX() < getWidth()-40) {
+				base.setX(base.getX()+5);
 			}
-			imgPause = 0;
+	        if (left && base.getX() > 20) {
+	        	base.setX(base.getX()-5);
+	        }
+	        basePulseCounter = 0;
+		}
+		if (missilePulseCounter >= missilePulseLimit) {
+	        List<Missile> toRemove = new ArrayList<>();
+	        for (Missile m : missiles) {
+	        	m.move();
+	        	if (m.isOutOfBounds()) {
+	        		toRemove.add(m);
+	        	}
+	        }
+	        
+	        missiles.removeAll(toRemove);
+	        missilePulseCounter = 0;
 		}
 		
-		if (right && base.getX() < getWidth()-40) {
-			base.setX(base.getX()+20);
+		if (invaderPulseCounter >= invaderPulseLimit) {
+	        boolean bounce = false;
+	        for (Invader i : invaders) {
+	        	i.setX(i.getX() + invaderX);
+	        	
+	        	if (i.getX() <= 0 || i.getX() + 30 >= getWidth()) {
+	        		bounce = true;
+	        	}
+	        }
+	        if (bounce) {
+	        	invaderX = -invaderX;
+	        	for (Invader i : invaders) {
+	            	i.setY(i.getY() + invaderY);       
+	            }
+	        	invaderPulseLimit = Math.max(1,  (int)(invaderPulseLimit * 0.8));
+	        }
+	        invaderPulseCounter = 0;
+	        for (Invader in : invaders) {
+				in.swapImages();
+			}
 		}
-        if (left && base.getX() > 20) {
-        	base.setX(base.getX()-20);
-        }
-        List<Missile> toRemove = new ArrayList<>();
-        for (Missile m : missiles) {
-        	m.move();
-        	if (m.isOutOfBounds()) {
-        		toRemove.add(m);
-        	}
-        }
-        
-        missiles.removeAll(toRemove);
-        
-        boolean bounce = false;
-        for (Invader i : invaders) {
-        	i.setX(i.getX() + invaderX);
-        	
-        	if (i.getX() <= 0 || i.getX() + 30 >= getWidth()) {
-        		bounce = true;
-        	}
-        }
-        if (bounce) {
-        	invaderX = -invaderX;
-        	for (Invader i : invaders) {
-            	i.setY(i.getY() + invaderY);       
-            }
-        }
         repaint(); 
 	}
 	/*
