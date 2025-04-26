@@ -97,7 +97,7 @@ public class Panel extends JPanel implements KeyListener{
 		
 		if (!mysteryShipActive) {
 			double random = Math.random();
-			if (random > 0.997) {
+			if (random > 0.95) {
 				boolean goingRight = Math.random() < 0.5;
 				if (goingRight) {
 					mysteryShip = new Mystery(-60, 50, 60, 30);
@@ -109,19 +109,18 @@ public class Panel extends JPanel implements KeyListener{
 				}
 				mysteryShip.playSound();
 				mysteryShipActive = true;
+				mysteryShipSpawnCounter = 0;
 			}
-//			mysteryShip = new Mystery(-60, 50, 60, 30);
-//			mysteryShipActive = true;
-//			mysteryShipSpawnCounter = 0;
+
 		}	
 		
 		if (mysteryShipActive && mysteryPulseCounter >= mysteryPulseLimit) {
 		    mysteryShip.move();
-		    if (mysteryShip.getX() < -60 || mysteryShip.getX() > + 60) {
+		    if (mysteryShip.getX() < -60 || mysteryShip.getX() > getWidth()) {
 		    	mysteryShipActive = false;
 		    	//stop sound
 		    }
-		mysteryPulseCounter = 0;
+		    mysteryPulseCounter = 0;
 		}
 		if (basePulseCounter >= basePulseLimit) {
 			if (right && base.getX() < getWidth()-40) {
