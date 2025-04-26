@@ -14,8 +14,6 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements KeyListener{
 	private Timer timer;
-	//private int x =325;
-	//private int y = 430;
 	private boolean right = false;
 	private boolean left = false;
 	
@@ -30,10 +28,12 @@ public class Panel extends JPanel implements KeyListener{
 	private int missilePulseCounter;
 	private int invaderPulseCounter;
 	private int mysteryPulseCounter;
+	private int invaderMissilePulseCounter;
 	private int basePulseLimit = 1;
 	private int missilePulseLimit = 1;
 	private int invaderPulseLimit = 40;
 	private int mysteryPulseLimit = 2;
+	private int invaderMissilePulseLimit = 2;
 	
 	private Mystery mysteryShip;
 	private boolean mysteryShipActive = false;
@@ -54,9 +54,10 @@ public class Panel extends JPanel implements KeyListener{
         
         int rows = 5;
         int columns = 10;
-        int startX = 50;
-        int startY = 80;
         int horizontalSpace = 35;
+        int totalWidth = (columns - 1) * horizontalSpace;
+        int startX = (500 - totalWidth) / 2;
+        int startY = 80;
         int verticalSpace = 25;
         
         for (int row = 0; row < rows; row++) {
@@ -92,6 +93,7 @@ public class Panel extends JPanel implements KeyListener{
 	    mysteryPulseCounter++;
 		imgPause++;
 		mysteryShipSpawnCounter++;
+		invaderMissilePulseCounter++;
 		
 		if (!mysteryShipActive) {
 			double random = Math.random();
@@ -108,9 +110,9 @@ public class Panel extends JPanel implements KeyListener{
 				mysteryShip.playSound();
 				mysteryShipActive = true;
 			}
-			mysteryShip = new Mystery(-60, 50, 60, 30);
-			mysteryShipActive = true;
-			mysteryShipSpawnCounter = 0;
+//			mysteryShip = new Mystery(-60, 50, 60, 30);
+//			mysteryShipActive = true;
+//			mysteryShipSpawnCounter = 0;
 		}	
 		
 		if (mysteryShipActive && mysteryPulseCounter >= mysteryPulseLimit) {
@@ -133,14 +135,31 @@ public class Panel extends JPanel implements KeyListener{
 		if (missilePulseCounter >= missilePulseLimit) {
 	        List<Missile> toRemove = new ArrayList<>();
 	        for (Missile m : missiles) {
-	        	m.move();
-	        	if (m.isOutOfBounds()) {
-	        		toRemove.add(m);
-	        	}
+	        	if (!m.isFromInvader()) {
+	        		m.move();
+	        		if (m.isOutOfBounds()) {
+		        		toRemove.add(m);
+		        	}
+	        	}		        
 	        }
 	        
 	        missiles.removeAll(toRemove);
 	        missilePulseCounter = 0;
+		}
+		
+		if (invaderMissilePulseCounter >= invaderMissilePulseLimit) {
+	        List<Missile> toRemove = new ArrayList<>();
+	        for (Missile m : missiles) {
+	        	if (m.isFromInvader()) {
+	        		m.move();
+	        		if (m.isOutOfBounds()) {
+		        		toRemove.add(m);
+		        	}
+	        	}	        	
+	        }
+	        
+	        missiles.removeAll(toRemove);
+	        invaderMissilePulseCounter = 0;
 		}
 		
 		if (invaderPulseCounter >= invaderPulseLimit) {
@@ -164,13 +183,21 @@ public class Panel extends JPanel implements KeyListener{
 				in.swapImages();
 			}
 		}
+		if (Math.random() < 0.01 && countInvaderMissiles() < 3) {
+		    List<Invader> bottomInvaders = getBottomInvaders();
+		    if (!bottomInvaders.isEmpty()) {
+		        int randomIndex = (int) (Math.random() * bottomInvaders.size());
+		        Invader shooter = bottomInvaders.get(randomIndex);
+		        missiles.add(new Missile((int)(shooter.getX() + shooter.getW() / 2), shooter.getY() + shooter.getH(), true));
+		    }
+		}
         repaint(); 
 	}
 	/*
 	 * 
 	 */
 	public void fireMissile() {
-		missiles.add(new Missile(base.getX() + 10, base.getY() ));
+		missiles.add(new Missile(base.getX() + 10, base.getY(), false ));
 	}
 	/*
 	 * 
@@ -234,5 +261,28 @@ public class Panel extends JPanel implements KeyListener{
 	public void resumeGame() {
 	    timer.start();
 	}
-	
+	private int countInvaderMissiles() {
+	    int count = 0;
+	    for (Missile m : missiles) {
+	        if (m.isFromInvader()) count++;
+	    }
+	    return count;
+	}
+	private List<Invader> getBottomInvaders() {
+		List<Invader> bottom = new ArrayList<>();
+	    for (int col = 0; col <= getWidth(); col += 35) {
+	    	 Invader lowest = null;
+	         for (Invader inv : invaders) {
+	        	 if (Math.abs(inv.getX() - col) <= 15) { 
+	        		  if (lowest == null || inv.getY() > lowest.getY()) {
+	                      lowest = inv;
+	                  }
+	              }
+	          }
+	          if (lowest != null) {
+	              bottom.add(lowest);
+	          }
+	      }
+	      return bottom;
+	  }
 }

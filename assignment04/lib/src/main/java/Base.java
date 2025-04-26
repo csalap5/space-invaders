@@ -41,7 +41,7 @@ public class Base extends Ship {
 		var y = getY();
 //		sound.setFramePosition(0);
 //		sound.start();
-		return new Missile( x+25, y).fire();
+		return new Missile( x+25, y, false).fire();
 	}
 	
 	
