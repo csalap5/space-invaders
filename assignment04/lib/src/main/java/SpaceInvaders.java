@@ -1,7 +1,9 @@
+import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -36,7 +38,6 @@ public class SpaceInvaders extends JFrame {
 		var resume = game.add("Resume");
 		game.addSeparator();
 		var exit = game.add("Quit");
-		
 		panel = new Panel();
 		add(panel);
 		
@@ -46,7 +47,6 @@ public class SpaceInvaders extends JFrame {
 		});
 		
 		resume.addActionListener(e -> panel.resumeGame());
-		
 		newGame.addActionListener(e -> {
 			panel.pauseGame();
 			var result = JOptionPane.showConfirmDialog(this, "Start a New Game?", "New Game", JOptionPane.YES_NO_OPTION);
@@ -90,8 +90,7 @@ public class SpaceInvaders extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		
-		
+			
 	}
 	/*
 	 * 
