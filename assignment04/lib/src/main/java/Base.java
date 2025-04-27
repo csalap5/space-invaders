@@ -36,6 +36,12 @@ public class Base extends Ship {
 	/*
 	 * 
 	 */
+	public void drawDestroyed(Graphics2D g2) {
+		g2.drawImage( hitImage, getX(), getY(), 20, 20, null );
+	}
+	/*
+	 * 
+	 */
 	public Missile fireMissile() {
 		var x = getX();
 		var y = getY();

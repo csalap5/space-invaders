@@ -205,6 +205,7 @@ public class Panel extends JPanel implements KeyListener{
 			}
 			if (Math.abs(m.getX() - base.getX()) < 10 && 
 					Math.abs(m.getY() - base.getY()) < 10) {
+				base.setHit();
 				System.out.println("base is hit");
 			}
 		}
@@ -223,7 +224,10 @@ public class Panel extends JPanel implements KeyListener{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        base.draw(g2);
+        if (base.isItHit()) {
+        	base.drawDestroyed(g2);
+        }
+        else base.draw(g2);
         for (Invader inv : invaders) {
         	if (inv.isItHit()) {
         		inv.drawDestroyed(g2);
