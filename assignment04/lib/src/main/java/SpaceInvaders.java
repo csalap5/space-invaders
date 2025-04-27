@@ -64,14 +64,18 @@ public class SpaceInvaders extends JFrame {
 		});
 		
 		exit.addActionListener(e -> {
+			panel.pauseGame();
 			var result = JOptionPane.showConfirmDialog(this, "Do you want to exit?");
 			if (result == JOptionPane.OK_OPTION) {
 				panel.pauseGame();
 				dispose();
 			}
 		});
-		about.addActionListener(e -> JOptionPane.showMessageDialog(this, 
-				"Space Invaders:"+ "\n" + "By Carter Salapka and Kevin Farnsworth"));
+		about.addActionListener(e -> {
+			panel.pauseGame();
+			JOptionPane.showMessageDialog(this, 
+				"Space Invaders:"+ "\n" + "By Carter Salapka and Kevin Farnsworth");
+		});
 		
 		addWindowListener(new WindowAdapter() {
 			@Override

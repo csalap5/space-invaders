@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Timer;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /*
  * 
@@ -198,15 +199,15 @@ public class Panel extends JPanel implements KeyListener{
 				if (Math.abs(m.getX() - i.getX()) < 10 && 
 						Math.abs(m.getY() - i.getY()) < 10) {
 					score += i.getPoints();
-					System.out.println("invader is hit");
 					i.setHit();
+//					missiles.remove(m);
+//					invaderMissilePulseCounter = 0;
 //					invaders.remove(i);
 				}
 			}
 			if (Math.abs(m.getX() - base.getX()) < 10 && 
 					Math.abs(m.getY() - base.getY()) < 10) {
 				base.setHit();
-				System.out.println("base is hit");
 			}
 		}
         repaint(); 
@@ -226,6 +227,7 @@ public class Panel extends JPanel implements KeyListener{
         Graphics2D g2 = (Graphics2D) g;
         if (base.isItHit()) {
         	base.drawDestroyed(g2);
+        	//create an ending screen with final score and options to quit or restart
         }
         else base.draw(g2);
         for (Invader inv : invaders) {
@@ -240,7 +242,7 @@ public class Panel extends JPanel implements KeyListener{
         if (mysteryShipActive) {
         	mysteryShip.draw(g2);
         }
-        g2.drawString("Score: " + score, 420,20);
+        g2.drawString("Score: " + score, 400,20);
     }
 	/*
 	 * 
