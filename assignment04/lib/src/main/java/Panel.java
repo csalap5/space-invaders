@@ -37,8 +37,6 @@ public class Panel extends JPanel implements KeyListener{
 	
 	private Mystery mysteryShip;
 	private boolean mysteryShipActive = false;
-	private int mysteryShipSpawnCounter = 0;
-	private int mysteryShipSpawnLimit = 3000;
 	
 	/*
 	 * 
@@ -92,30 +90,32 @@ public class Panel extends JPanel implements KeyListener{
 	    invaderPulseCounter++;
 	    mysteryPulseCounter++;
 		imgPause++;
-		mysteryShipSpawnCounter++;
 		invaderMissilePulseCounter++;
 		
 		if (!mysteryShipActive) {
 			double random = Math.random();
-			if (random > 0.95) {
+			if (random > 0.998) {
+				System.out.println("Spawning");
 				boolean goingRight = Math.random() < 0.5;
 				if (goingRight) {
+					System.out.println("RIGHT");
 					mysteryShip = new Mystery(-60, 50, 60, 30);
 					mysteryShip.setSpeed(5);
 				}
 				else {
-					mysteryShip = new Mystery(getWidth(), 50, 60, 30);
+					System.out.println("LEFT");
+					mysteryShip = new Mystery(500, 50, 60, 30);
 					mysteryShip.setSpeed(-5);
 				}
 				mysteryShip.playSound();
 				mysteryShipActive = true;
-				mysteryShipSpawnCounter = 0;
+				System.out.println(mysteryShipActive);
 			}
 
 		}	
 		
 		if (mysteryShipActive && mysteryPulseCounter >= mysteryPulseLimit) {
-		    mysteryShip.move();
+		    mysteryShip.setX(mysteryShip.getX()+mysteryShip.getSpeed());
 		    if (mysteryShip.getX() < -60 || mysteryShip.getX() > getWidth()) {
 		    	mysteryShipActive = false;
 		    	//stop sound

@@ -35,27 +35,35 @@ public class Mystery extends Invader {
 	public Mystery(int x, int y, int w, int h) {
 		super(x,y,w,h,getRandom());
 		normImage = Drawable.getImage("img_mystery.gif");
+		swapImage = normImage;
 		this.speed = 5;
 		
 	}
 	
-	/*
+	/**
 	 * 
 	 */
 	public void move() {
 		this.setX(this.getX()+this.speed);
 	}
-	/*
+	/**
 	 * 
 	 */
 	public void setSpeed(int s) {
 		this.speed = s; 
 	}
 	
-	/*
+	/**
 	 * 
 	 */
 	public void playSound() {
 		
+	}
+	
+	/**
+	 * 
+	 */
+	public int getSpeed() {
+		return this.speed; 
 	}
 }
