@@ -197,6 +197,7 @@ public class Panel extends JPanel implements KeyListener{
 			for (Invader i : invaders) {
 				if (Math.abs(m.getX() - i.getX()) < 10 && 
 						Math.abs(m.getY() - i.getY()) < 10) {
+					score += i.getPoints();
 					System.out.println("invader is hit");
 //					missiles.remove(m);
 //					invaders.remove(i);
