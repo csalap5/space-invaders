@@ -50,7 +50,7 @@ public abstract class Ship extends Drawable {
 	 * 
 	 */
 	public void setHit() {
-		sound.start();
+		hitSound.start();
 		isHit = true;
 	}
 	/*

@@ -199,7 +199,7 @@ public class Panel extends JPanel implements KeyListener{
 						Math.abs(m.getY() - i.getY()) < 10) {
 					score += i.getPoints();
 					System.out.println("invader is hit");
-//					missiles.remove(m);
+					i.setHit();
 //					invaders.remove(i);
 				}
 			}
@@ -225,7 +225,10 @@ public class Panel extends JPanel implements KeyListener{
         Graphics2D g2 = (Graphics2D) g;
         base.draw(g2);
         for (Invader inv : invaders) {
-        	inv.draw(g2);
+        	if (inv.isItHit()) {
+        		inv.drawDestroyed(g2);
+        	}
+        	else inv.draw(g2);
         }
         for (Missile m : missiles) {
         	m.draw(g2);
