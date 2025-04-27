@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Timer;
-
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 /*
  * 
@@ -38,6 +38,9 @@ public class Panel extends JPanel implements KeyListener{
 	private Mystery mysteryShip;
 	private boolean mysteryShipActive = false;
 	
+    private int score = 0;
+    
+    
 	/*
 	 * 
 	 */
@@ -45,7 +48,6 @@ public class Panel extends JPanel implements KeyListener{
 		setBackground(Color.BLACK);
         setFocusable(true);
         addKeyListener(this);
-        
         base = new Base(325,380,100,100);
 		invaders = new ArrayList<>();
         missiles = new ArrayList<>();
@@ -58,6 +60,7 @@ public class Panel extends JPanel implements KeyListener{
         int startY = 80;
         int verticalSpace = 25;
         
+            
         for (int row = 0; row < rows; row++) {
         	for (int col = 0; col < columns; col++) {
         		int x = startX + col * horizontalSpace;
@@ -215,6 +218,7 @@ public class Panel extends JPanel implements KeyListener{
         if (mysteryShipActive) {
         	mysteryShip.draw(g2);
         }
+        g2.drawString("Score: " + score, 420,20);
     }
 	/*
 	 * 
