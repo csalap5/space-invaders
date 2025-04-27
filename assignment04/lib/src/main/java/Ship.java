@@ -15,6 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public abstract class Ship extends Drawable {
 	
 	private boolean isHit = false;
+	private boolean wasHit = false;
 	private final Clip hitSound = Ship.getSound("aud_hit.wav");
 	
 	/*
@@ -52,6 +53,12 @@ public abstract class Ship extends Drawable {
 	public void setHit() {
 		hitSound.start();
 		isHit = true;
+	}
+	public void setWasHit() {
+		wasHit=true;
+	}
+	public boolean getWasHit() {
+		return wasHit;
 	}
 	/*
 	 * 

@@ -9,6 +9,7 @@ import javax.sound.sampled.Clip;
 public class Missile extends Drawable {
 	private Font font = new Font("Arial", Font.BOLD, 15 );
 	private boolean fromInvader;
+	private boolean hitOne = false;
 	/*
 	 * 
 	 */
@@ -57,6 +58,13 @@ public class Missile extends Drawable {
 	 */
 	public boolean isFromInvader() {
 		return fromInvader;
+	}
+	
+	public void setHitOne() {
+		hitOne=true;
+	}
+	public boolean getHitOne() {
+		return hitOne;
 	}
 
 }

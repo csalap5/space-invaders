@@ -142,8 +142,11 @@ public class Panel extends JPanel implements KeyListener{
 	        		m.move();
 	        		if (m.isOutOfBounds()) {
 		        		toRemove.add(m);
-		        	}
-	        	}		        
+	        		}
+	        	}
+	        	if (m.getHitOne()) {
+        			toRemove.add(m);
+        		}
 	        }
 	        
 	        missiles.removeAll(toRemove);
@@ -194,21 +197,26 @@ public class Panel extends JPanel implements KeyListener{
 		        missiles.add(new Missile((int)(shooter.getX() + shooter.getW() / 2), shooter.getY() + shooter.getH(), true));
 		    }
 		}
-		for (Missile m : missiles) {
-			for (Invader i : invaders) {
-				if (Math.abs(m.getX() - i.getX()) < 10 && 
-						Math.abs(m.getY() - i.getY()) < 10) {
-					score += i.getPoints();
-					i.setHit();
-//					missiles.remove(m);
+		if (missiles.size() > 0 && invaders.size() > 0) {
+		for (int mis = missiles.size()-1; mis >=0; mis--) {
+			if (missiles.get(mis).getHitOne()) continue;
+			for (int invad = invaders.size()-1; invad >=0; invad--) {
+				if (Math.abs(missiles.get(mis).getX() - invaders.get(invad).getX()) 
+						< 10 && Math.abs(missiles.get(mis).getY() 
+								- invaders.get(invad).getY()) < 10) {
+					score += invaders.get(invad).getPoints();
+					invaders.get(invad).setHit();
+					missiles.get(mis).setHitOne();
+					break;
 //					invaderMissilePulseCounter = 0;
 //					invaders.remove(i);
 				}
 			}
-			if (Math.abs(m.getX() - base.getX()) < 10 && 
-					Math.abs(m.getY() - base.getY()) < 10) {
+			if (Math.abs(missiles.get(mis).getX() - base.getX()) < 10 && 
+					Math.abs(missiles.get(mis).getY() - base.getY()) < 10) {
 				base.setHit();
 			}
+		}
 		}
         repaint(); 
 	}
@@ -228,11 +236,19 @@ public class Panel extends JPanel implements KeyListener{
         if (base.isItHit()) {
         	base.drawDestroyed(g2);
         	//create an ending screen with final score and options to quit or restart
+//        	var endGame = new JOptionPane.showConfirmDialog(this,"Game Over", g);
+//        	timer.stop();
+//        	JOptionPane.showConfirmDialog(this, "Game Over :(", "Start a new game?", JOptionPane.YES_OPTION);
         }
         else base.draw(g2);
         for (Invader inv : invaders) {
+        	if (inv.getWasHit()) {
+        		invaders.remove(inv);
+        		break;
+        	}
         	if (inv.isItHit()) {
         		inv.drawDestroyed(g2);
+        		inv.setWasHit();
         	}
         	else inv.draw(g2);
         }
