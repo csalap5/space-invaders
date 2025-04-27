@@ -193,6 +193,20 @@ public class Panel extends JPanel implements KeyListener{
 		        missiles.add(new Missile((int)(shooter.getX() + shooter.getW() / 2), shooter.getY() + shooter.getH(), true));
 		    }
 		}
+		for (Missile m : missiles) {
+			for (Invader i : invaders) {
+				if (Math.abs(m.getX() - i.getX()) < 10 && 
+						Math.abs(m.getY() - i.getY()) < 10) {
+					System.out.println("invader is hit");
+//					missiles.remove(m);
+//					invaders.remove(i);
+				}
+			}
+			if (Math.abs(m.getX() - base.getX()) < 10 && 
+					Math.abs(m.getY() - base.getY()) < 10) {
+				System.out.println("base is hit");
+			}
+		}
         repaint(); 
 	}
 	/*

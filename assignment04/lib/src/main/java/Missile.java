@@ -7,7 +7,6 @@ import javax.sound.sampled.Clip;
  * 
  */
 public class Missile extends Drawable {
-//	private String glyph = "|";
 	private Font font = new Font("Arial", Font.BOLD, 15 );
 	private boolean fromInvader;
 	/*
@@ -29,14 +28,9 @@ public class Missile extends Drawable {
 		g2.drawString( "|", x, y);
 
 	}
-	/*
+	/**
 	 * 
 	 */
-//	public Missile move() {
-//		var y = getY() - 20;
-//		setY( y );
-//		return (y < -50) ? null : this;
-//	}
 	public void move() {
 		if (fromInvader) {
 			setY(getY() + 5);
@@ -49,7 +43,6 @@ public class Missile extends Drawable {
 	 * 
 	 */
 	public Missile fire() {
-
 		return this;
 	}
 	/*
@@ -59,8 +52,11 @@ public class Missile extends Drawable {
 		var y = getY();
 		return y < 0 || y > 500;
 	}
-	 public boolean isFromInvader() {
-	        return fromInvader;
-	    }
+	/*
+	 * 
+	 */
+	public boolean isFromInvader() {
+		return fromInvader;
+	}
 
 }

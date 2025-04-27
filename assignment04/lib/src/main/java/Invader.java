@@ -43,6 +43,10 @@ public abstract class Invader extends Ship {
 		swapped = !swapped;
 	}
 	
+	public int getPoints() {
+		return points;
+	}
+	
 
 }
 
