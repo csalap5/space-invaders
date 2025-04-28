@@ -45,6 +45,7 @@ public class Mystery extends Invader {
 		super(x,y,w,h,getRandom());
 		setNormImage(Drawable.getImage("img_mystery.gif"));
 		setSwapImage(Drawable.getImage("img_mystery.gif"));
+		setHitImage(Drawable.getImage("img_invaderhit.gif"));
 		this.speed = 5;
 		
 	}
