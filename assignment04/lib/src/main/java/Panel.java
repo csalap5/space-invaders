@@ -192,10 +192,10 @@ public class Panel extends JPanel implements KeyListener{
 		    mysteryPulseCounter = 0;
 		}
 		if (basePulseCounter >= basePulseLimit) {
-			if (right && base.getX() < getWidth()-40) {
+			if (right && base.getX() < getWidth()-35) {
 				base.setX(base.getX()+5);
 			}
-	        if (left && base.getX() > 20) {
+	        if (left && base.getX() > 10) {
 	        	base.setX(base.getX()-5);
 	        }
 	        basePulseCounter = 0;
@@ -240,6 +240,9 @@ public class Panel extends JPanel implements KeyListener{
 	        	
 	        	if (i.getX() <= 0 || i.getX() + 30 >= getWidth()) {
 	        		bounce = true;
+	        	}
+	        	if (i.getY() >= 380) {
+	        		base.setHit();
 	        	}
 	        }
 	        if (bounce) {
