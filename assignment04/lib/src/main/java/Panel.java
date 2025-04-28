@@ -101,22 +101,18 @@ public class Panel extends JPanel implements KeyListener{
 		if (!mysteryShipActive) {
 			double random = Math.random();
 			if (random > 0.998) {
-				System.out.println("Spawning");
 				boolean goingRight = Math.random() < 0.5;
 				if (goingRight) {
-					System.out.println("RIGHT");
 					mysteryShip = new Mystery(-60, 50, 60, 30);
 					mysteryShip.setSpeed(5);
 				}
 				else {
-					System.out.println("LEFT");
 					mysteryShip = new Mystery(500, 50, 60, 30);
 					mysteryShip.setSpeed(-5);
 				}
 				mysteryShip.getMystSound().start();
 				mysteryShipActive = true;
 			}
-
 		}	
 		
 		if (mysteryShipActive && mysteryPulseCounter >= mysteryPulseLimit) {
@@ -232,13 +228,13 @@ public class Panel extends JPanel implements KeyListener{
 		}
         repaint(); 
 	}
-	 /**
+	/**
      * Fires a missile from the player's base.
      */
 	public void fireMissile() {
 		missiles.add(new Missile(base.getX() + 10, base.getY(), false ));
 	}
-	 /**
+	/**
      * Paints the game components (base, invaders, missiles) to the screen.
      * 
      * @param g Graphics object used for drawing
