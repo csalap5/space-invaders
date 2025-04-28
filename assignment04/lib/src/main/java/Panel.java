@@ -8,8 +8,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Timer;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /*
  * 
@@ -25,7 +23,6 @@ public class Panel extends JPanel implements KeyListener{
 	private List<Missile> missiles;
 	private int invaderX = 2;
 	private int invaderY = 12;
-	private int imgPause = 0;
 	
 	private int basePulseCounter;
 	private int missilePulseCounter;
@@ -97,7 +94,6 @@ public class Panel extends JPanel implements KeyListener{
 	    missilePulseCounter++;
 	    invaderPulseCounter++;
 	    mysteryPulseCounter++;
-		imgPause++;
 		invaderMissilePulseCounter++;
 		
 		if (!mysteryShipActive) {
@@ -115,7 +111,7 @@ public class Panel extends JPanel implements KeyListener{
 					mysteryShip = new Mystery(500, 50, 60, 30);
 					mysteryShip.setSpeed(-5);
 				}
-				mysteryShip.playSound();
+				mysteryShip.getMystSound().start();
 				mysteryShipActive = true;
 			}
 
@@ -125,7 +121,7 @@ public class Panel extends JPanel implements KeyListener{
 		    mysteryShip.setX(mysteryShip.getX()+mysteryShip.getSpeed());
 		    if (mysteryShip.getX() < -60 || mysteryShip.getX() > getWidth()) {
 		    	mysteryShipActive = false;
-		    	//stop sound
+		    	mysteryShip.getMystSound().stop();
 		    }
 		    mysteryPulseCounter = 0;
 		}
