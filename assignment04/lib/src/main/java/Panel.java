@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Timer;
 import javax.swing.JPanel;
-/*
- * 
+/**
+ * Represents the game panel for the Space Invaders game. Handles game logic, drawing 
+ * of game objects, player input, and updating game states such as score, missile movements, 
+ * invader movement, and collision detection.
  */
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements KeyListener{
@@ -43,9 +45,9 @@ public class Panel extends JPanel implements KeyListener{
     private Font font = new Font("Arial", Font.BOLD, 40 );
     private Font font2 = new Font("Arial", Font.BOLD, 20 );
     
-	/*
-	 * 
-	 */
+    /**
+     * Constructs the game panel, initializes game objects, and sets up the game timer.
+     */
 	public Panel() {
 		setBackground(Color.BLACK);
         setFocusable(true);
@@ -230,15 +232,17 @@ public class Panel extends JPanel implements KeyListener{
 		}
         repaint(); 
 	}
-	/*
-	 * 
-	 */
+	 /**
+     * Fires a missile from the player's base.
+     */
 	public void fireMissile() {
 		missiles.add(new Missile(base.getX() + 10, base.getY(), false ));
 	}
-	/*
-	 * 
-	 */
+	 /**
+     * Paints the game components (base, invaders, missiles) to the screen.
+     * 
+     * @param g Graphics object used for drawing
+     */
 	@Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -285,15 +289,19 @@ public class Panel extends JPanel implements KeyListener{
         g2.drawString("Score: " + score, 400,20);
     }
 	
-	/*
-	 * 
-	 */
+	/**
+     * Handles key typed events, not needed for Panel
+     * 
+     * @param e The key event
+     */
 	@Override
 	public void keyTyped(KeyEvent e) {	
 	}
-	/*
-	 * 
-	 */
+	/**
+     * Handles key press events to control the base movement and firing missiles.
+     * 
+     * @param e The key event
+     */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		var code = e.getKeyCode();
@@ -307,9 +315,11 @@ public class Panel extends JPanel implements KeyListener{
 			fireMissile();
 		}
 	}
-	/*
-	 * 
-	 */
+	/**
+     * Handles key release events to stop base movement or missile firing.
+     * 
+     * @param e The key event
+     */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		var code = e.getKeyCode();
@@ -317,15 +327,15 @@ public class Panel extends JPanel implements KeyListener{
 		if (code == KeyEvent.VK_LEFT) left = false;
 		if (code == KeyEvent.VK_RIGHT) right = false;
 	}
-	/*
-	 * 
-	 */
+	/**
+     * Pauses the game by stopping the timer.
+     */
 	public void pauseGame() {
 	    timer.stop();
 	}
-	/*
-	 * 
-	 */
+	/**
+     * Resumes the game by starting the timer.
+     */
 	public void resumeGame() {
 	    timer.start();
 	}
