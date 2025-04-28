@@ -1,9 +1,7 @@
-import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -41,15 +39,30 @@ public class SpaceInvaders extends JFrame {
 		panel = new Panel();
 		add(panel);
 		
+		pause.setEnabled(false);
+	    resume.setEnabled(false);
+		
+	    game.addActionListener(e -> {
+	    	pause.setEnabled(true);
+		    resume.setEnabled(true);
+	    });
 		pause.addActionListener(e -> {
 			panel.pauseGame();
+			resume.setEnabled(true);
+			pause.setEnabled(false);
 			JOptionPane.showMessageDialog(this, "Game Paused. Click Resume to Continue.");
 		});
 		
-		resume.addActionListener(e -> panel.resumeGame());
+		resume.addActionListener(e -> {
+			 pause.setEnabled(true);
+		     resume.setEnabled(false);
+		     panel.resumeGame();
+		});
 		newGame.addActionListener(e -> {
 			panel.pauseGame();
 			var result = JOptionPane.showConfirmDialog(this, "Start a New Game?", "New Game", JOptionPane.YES_NO_OPTION);
+			pause.setEnabled(false);
+		    resume.setEnabled(false);
 			if (result == JOptionPane.YES_OPTION) {
 				remove(panel);
 				panel.pauseGame();
@@ -57,6 +70,9 @@ public class SpaceInvaders extends JFrame {
 				add(panel);
 				revalidate();
 				repaint();
+				
+				 pause.setEnabled(true);
+			     resume.setEnabled(false);
 			}
 			else {
 				panel.resumeGame();
@@ -66,7 +82,10 @@ public class SpaceInvaders extends JFrame {
 		exit.addActionListener(e -> {
 			panel.pauseGame();
 			var result = JOptionPane.showConfirmDialog(this, "Do you want to exit?");
+			pause.setEnabled(false);
+		    resume.setEnabled(false);
 			if (result == JOptionPane.OK_OPTION) {
+				
 				panel.pauseGame();
 				dispose();
 			}
@@ -81,7 +100,10 @@ public class SpaceInvaders extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				var result = JOptionPane.showConfirmDialog(SpaceInvaders.this, "Dare to Quit?");
+				pause.setEnabled(false);
+			    resume.setEnabled(false);
 				if (result == JOptionPane.YES_OPTION) {
+					
 					panel.pauseGame();
 					dispose();
 				}				
