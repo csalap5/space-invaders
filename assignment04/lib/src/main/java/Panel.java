@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -41,7 +43,8 @@ public class Panel extends JPanel implements KeyListener{
 	
     private int score = 0;
     private int mysteryCount=0;
-    
+    private Font font = new Font("Arial", Font.BOLD, 40 );
+    private Font font2 = new Font("Arial", Font.BOLD, 20 );
     
 	/*
 	 * 
@@ -246,14 +249,15 @@ public class Panel extends JPanel implements KeyListener{
         Graphics2D g2 = (Graphics2D) g;
         if (base.isItHit()) {
         	base.drawDestroyed(g2);
-//        	repaint();
-        	//create an ending screen with final score and options to quit or restart
-//        	var endGame = new JOptionPane.showConfirmDialog(this,"Game Over", g);
         	this.pauseGame();
         	timer.stop();
-//        	JOptionPane.showConfirmDialog(this, "Game Over :(", "Start a new game?", JOptionPane.YES_OPTION);
-        	int endGame = JOptionPane.showConfirmDialog(this, "Game Over :( \nScore: " + score, "Game Over",
-        			JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        	g2.setFont(font);
+        	g2.setColor(Color.GREEN);
+        	String gameOver = "GAME OVER";
+        	FontMetrics fm = g2.getFontMetrics();
+        	g2.drawString(gameOver, getWidth()/2-fm.stringWidth(gameOver)/2, getHeight()/2);
+        	g2.setFont(font2);
+        	g2.drawString("Final Score: " + score, getWidth()/2-fm.stringWidth(gameOver)/2, getHeight()/2 + 40);
         	return;
         }
         else base.draw(g2);
@@ -361,5 +365,8 @@ public class Panel extends JPanel implements KeyListener{
 	        }
 	    }
 	    return count;
+	}
+	private void createWave(int scoreVal) {
+		
 	}
 }
