@@ -369,6 +369,7 @@ public class Panel extends JPanel implements KeyListener{
         		mysteryShip.drawDestroyed(g2);
         		mysteryCount++;
         		mysteryShip.setSpeed(0);
+        		
         		if (mysteryCount>=50) {
             		mysteryShipActive=false;
             	}
