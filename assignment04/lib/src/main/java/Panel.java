@@ -244,10 +244,13 @@ public class Panel extends JPanel implements KeyListener{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        if (invaders.isEmpty() && !mysteryShipActive && missiles.isEmpty()) {
+        	createWave(score);
+        	return;
+        }
         if (base.isItHit()) {
         	base.drawDestroyed(g2);
         	this.pauseGame();
-        	timer.stop();
         	g2.setFont(font);
         	g2.setColor(Color.GREEN);
         	String gameOver = "GAME OVER";
@@ -371,6 +374,42 @@ public class Panel extends JPanel implements KeyListener{
 	    return count;
 	}
 	private void createWave(int scoreVal) {
+		invaderX = 2;
+		invaderY = 12;
 		
+		mysteryShipActive = false;
+	    score = scoreVal;
+	    mysteryCount=0;
+	    
+	    base = new Base(325,380,100,100);
+        int rows = 5;
+        int columns = 10;
+        int horizontalSpace = 35;
+        int totalWidth = (columns - 1) * horizontalSpace;
+        int startX = (500 - totalWidth) / 2;
+        int startY = 80;
+        int verticalSpace = 25;
+        
+	    for (int row = 0; row < rows; row++) {
+        	for (int col = 0; col < columns; col++) {
+        		int x = startX + col * horizontalSpace;
+        		int y = startY + row * verticalSpace;
+        		Invader inv;
+        		switch (row) {
+            case 0 -> inv = new InvaderTop(x, y, 60, 60);
+  
+            case 1 -> inv = new InvaderMiddle(x, y, 60, 60);
+  
+            case 2 -> inv = new InvaderMiddle(x, y, 60, 60);
+          		
+            case 3 -> inv = new InvaderBottom(x, y, 60, 60);
+            
+            default -> inv = new InvaderBottom(x, y, 60, 60);
+          		
+          }
+        		invaders.add(inv);
+        	}
+        }
+	    timer.start();	
 	}
 }
