@@ -235,20 +235,25 @@ public class Panel extends JPanel implements KeyListener{
         Graphics2D g2 = (Graphics2D) g;
         if (base.isItHit()) {
         	base.drawDestroyed(g2);
+//        	repaint();
         	//create an ending screen with final score and options to quit or restart
 //        	var endGame = new JOptionPane.showConfirmDialog(this,"Game Over", g);
-//        	timer.stop();
+        	this.pauseGame();
+        	timer.stop();
 //        	JOptionPane.showConfirmDialog(this, "Game Over :(", "Start a new game?", JOptionPane.YES_OPTION);
+        	int endGame = JOptionPane.showConfirmDialog(this, "Game Over :( \nScore: " + score, "Game Over",
+        			JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        	return;
         }
         else base.draw(g2);
         for (Invader inv : invaders) {
-        	if (inv.getWasHit()) {
-        		invaders.remove(inv);
-        		break;
-        	}
         	if (inv.isItHit()) {
         		inv.drawDestroyed(g2);
-        		inv.setWasHit();
+        		inv.incTimeFromHit();
+        		if (inv.incTimeFromHit() >= 50) {
+        			invaders.remove(inv);
+        			break;
+        		}
         	}
         	else inv.draw(g2);
         }
@@ -260,6 +265,7 @@ public class Panel extends JPanel implements KeyListener{
         }
         g2.drawString("Score: " + score, 400,20);
     }
+	
 	/*
 	 * 
 	 */
