@@ -6,7 +6,15 @@ public class Base extends Ship {
 	/**
      * Enum for possible movement directions.
      */
-	public enum Move { RIGHT, LEFT }	
+	public enum Move {
+		/**
+		 * Right movement. 
+		 */
+		RIGHT,
+		/**
+		 * Left movement.
+		 */
+		LEFT }	
 	/**
      * Creates a new Base object with specified position and size.
      * Loads the images and sound for the base.

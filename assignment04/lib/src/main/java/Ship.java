@@ -60,24 +60,32 @@ public abstract class Ship extends Drawable {
 	}
 	/**
 	 * Setter method for sound
+	 * 
+	 * @param sound Sound to be set
 	 */
 	public void setSound(Clip sound) {
 		this.sound = sound;
 	}
 	/**
 	 * Setter method for normImage
+	 * 
+	 * @param normImage Image to be set
 	 */
 	public void setNormImage(Image normImage) {
 		this.normImage = normImage;
 	}
 	/**
 	 * Setter method for swapImage
+	 * 
+	 * @param swapImage Image to be set
 	 */
 	public void setSwapImage(Image swapImage) {
 		this.swapImage = swapImage;
 	}
 	/**
 	 * Setter method for hitImage
+	 * 
+	 * @param hitImage Image to be set
 	 */
 	public void setHitImage(Image hitImage) {
 		this.hitImage = hitImage;
@@ -110,7 +118,9 @@ public abstract class Ship extends Drawable {
 		isHit = true;
 	}
 	/**
+	 * Increments the amount of time since object was hit.
 	 * 
+	 * @return timeFromHit amount of time since object was hit
 	 */
 	public int incTimeFromHit() {
 		timeFromHit++;

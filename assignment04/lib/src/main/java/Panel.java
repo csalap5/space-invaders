@@ -16,33 +16,101 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class Panel extends JPanel implements KeyListener{
+	/**
+	 *  Timer to control the game loop updates 
+	 */
 	private Timer timer;
+	/**
+	 *  Whether the base is moving right 
+	 */
 	private boolean right = false;
+	/**
+	 *  Whether the base is moving left 
+	 */
 	private boolean left = false;
-	
+	/**
+	 *  The player's base object 
+	 */
 	private Base base;
+	/**
+	 *  List of all active invaders 
+	 */
 	private List<Invader> invaders;
+	/**
+	 *  List of all active missiles 
+	 */
 	private List<Missile> missiles;
+	/**
+	 *  Horizontal movement amount for invaders 
+	 */
 	private int invaderX = 2;
+	/**
+	 *  Vertical movement amount for invaders when they bounce 
+	 */
 	private int invaderY = 12;
-	
+	/**
+	 *  Counter for base movement pulses 
+	 */
 	private int basePulseCounter;
+	/**
+	 *  Counter for missile movement pulses 
+	 */
 	private int missilePulseCounter;
+	/**
+	 *  Counter for invader movement pulses 
+	 */
 	private int invaderPulseCounter;
+	/**
+	 *  Counter for mystery ship movement pulses 
+	 */
 	private int mysteryPulseCounter;
+	/**
+	 *  Counter for invader missile movement pulses 
+	 */
 	private int invaderMissilePulseCounter;
+	/**
+	 *  Limit to control base movement frequency 
+	 */
 	private int basePulseLimit = 1;
+	/**
+	 *  Limit to control missile movement frequency 
+	 */
 	private int missilePulseLimit = 1;
+	/**
+	 *  Limit to control invader movement frequency 
+	 */
 	private int invaderPulseLimit = 40;
+	/**
+	 *  Limit to control mystery ship movement frequency 
+	 */
 	private int mysteryPulseLimit = 2;
+	/**
+	 *  Limit to control mystery ship movement frequency
+	 */
 	private int invaderMissilePulseLimit = 2;
-	
+	/**
+	 *  The mystery ship object 
+	 */
 	private Mystery mysteryShip;
+	/**
+	 *  Whether the mystery ship is currently active 
+	 */
 	private boolean mysteryShipActive = false;
-	
+	/**
+	 *  Current player's score
+	 */
     private int score = 0;
+    /**
+     *  Counter to track mystery ship display time after being hit 
+     */
     private int mysteryCount=0;
+    /**
+     *  Font for large text (Game Over) 
+     */
     private Font font = new Font("Arial", Font.BOLD, 40 );
+    /** 
+     * Font for smaller text (Final Score)
+     */
     private Font font2 = new Font("Arial", Font.BOLD, 20 );
     
     /**

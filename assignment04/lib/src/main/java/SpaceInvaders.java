@@ -16,6 +16,9 @@ import javax.swing.JOptionPane;
  */
 @SuppressWarnings("serial")
 public class SpaceInvaders extends JFrame {
+	/** 
+	 * The panel that displays the game.
+	 */
 	private Panel panel;
 	/**
      * Constructs the Space Invaders window, setting up the menu and game controls.

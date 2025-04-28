@@ -10,7 +10,23 @@ public abstract class Drawable {
 	/**
      * Enum representing movement directions.
      */
-	public enum Move { UP, DOWN, RIGHT, LEFT }
+	public enum Move { 
+		/**
+		 * Up movement.
+		 */
+		UP, 
+		/**
+		 * Down movement.
+		 */
+		DOWN, 
+		/**
+		 * Right movement.
+		 */
+		RIGHT, 
+		/**
+		 * Left movement
+		 */
+		LEFT }
 	
 	private int x;
 	private int y;
@@ -70,7 +86,7 @@ public abstract class Drawable {
 	protected void setX(int x) {
 		this.x = x;
 	}
-	 /**
+	/**
      * Sets the y-coordinate.
      *
      * @param y the new y-coordinate
@@ -86,7 +102,7 @@ public abstract class Drawable {
 	protected void setW(double w) {
 		width = w;
 	}
-	 /**
+	/**
      * Sets the height.
      *
      * @param h the new height
@@ -94,13 +110,13 @@ public abstract class Drawable {
 	protected void setH(int h) {
 		height = h;
 	}
-	 /**
-     * Sets the height.
+	/**
+     * Draws the image
      *
-     * @param h the new height
+     * @param g2 Graphics 2D to draw
      */
 	public abstract void draw(Graphics2D g2);
-	 /**
+	/**
      * Loads an image from the resources folder.
      *
      * @param filename the filename of the image

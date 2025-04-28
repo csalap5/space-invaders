@@ -9,9 +9,21 @@ public class Mystery extends Invader {
      * Enum representing possible point values awarded for destroying the Mystery ship.
      */
 	public enum PointValue{
+		/**
+		 * 50 Points.
+		 */
 		FIFTY(50),
+		/**
+		 * 100 Points.
+		 */
 		HUNDRED(100),
+		/**
+		 * 150 Points.
+		 */
 		ONEFIFTY(150),
+		/**
+		 * 300 Points.
+		 */
 		THREEHUNDRED(300);
 		
 		private final int points;
