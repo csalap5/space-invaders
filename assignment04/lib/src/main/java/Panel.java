@@ -40,6 +40,7 @@ public class Panel extends JPanel implements KeyListener{
 	private boolean mysteryShipActive = false;
 	
     private int score = 0;
+    private int mysteryCount=0;
     
     
 	/*
@@ -113,7 +114,6 @@ public class Panel extends JPanel implements KeyListener{
 				}
 				mysteryShip.playSound();
 				mysteryShipActive = true;
-				System.out.println(mysteryShipActive);
 			}
 
 		}	
@@ -201,20 +201,31 @@ public class Panel extends JPanel implements KeyListener{
 		for (int mis = missiles.size()-1; mis >=0; mis--) {
 			if (missiles.get(mis).getHitOne()) continue;
 			for (int invad = invaders.size()-1; invad >=0; invad--) {
-				if (Math.abs(missiles.get(mis).getX() - invaders.get(invad).getX()) 
-						< 10 && Math.abs(missiles.get(mis).getY() 
-								- invaders.get(invad).getY()) < 10) {
+				if (missiles.get(mis).getX()-invaders.get(invad).getX() < 50 &&
+						missiles.get(mis).getX()-invaders.get(invad).getX() > 0 &&
+						missiles.get(mis).getY()-invaders.get(invad).getY() < 60 && 
+						missiles.get(mis).getY()-invaders.get(invad).getY() > 10) {
 					score += invaders.get(invad).getPoints();
 					invaders.get(invad).setHit();
 					missiles.get(mis).setHitOne();
 					break;
-//					invaderMissilePulseCounter = 0;
-//					invaders.remove(i);
 				}
 			}
-			if (Math.abs(missiles.get(mis).getX() - base.getX()) < 10 && 
-					Math.abs(missiles.get(mis).getY() - base.getY()) < 10) {
+			if (missiles.get(mis).isFromInvader() && 
+					missiles.get(mis).getX() - base.getX() < 30 && 
+					missiles.get(mis).getX() - base.getX() > -5 &&
+					missiles.get(mis).getY() - base.getY() < 20 && 
+					missiles.get(mis).getY() - base.getY() > -10){
 				base.setHit();
+			}
+			if (mysteryShipActive && missiles.get(mis).getX() - mysteryShip.getX() < 60 && 
+					missiles.get(mis).getX() - mysteryShip.getX() > 0 &&
+					missiles.get(mis).getY() - mysteryShip.getY() < 60 &&
+					missiles.get(mis).getY() - mysteryShip.getY() < 60) {
+				score += mysteryShip.getPoints();
+				mysteryShip.setHit();
+				missiles.get(mis).setHitOne();
+				break;
 			}
 		}
 		}
@@ -261,6 +272,14 @@ public class Panel extends JPanel implements KeyListener{
         	m.draw(g2);
         }
         if (mysteryShipActive) {
+        	if (mysteryShip.isItHit()) {
+        		mysteryShip.drawDestroyed(g2);
+        		mysteryCount++;
+        		mysteryShip.setSpeed(0);
+        		if (mysteryCount>=50) {
+            		mysteryShipActive=false;
+            	}
+        	}
         	mysteryShip.draw(g2);
         }
         g2.drawString("Score: " + score, 400,20);
