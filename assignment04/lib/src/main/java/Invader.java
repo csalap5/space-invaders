@@ -44,7 +44,6 @@ public abstract class Invader extends Ship {
 			current = this.getNormImage();
 		}
 		else {
-			//current = swapImage;
 			current = this.getSwapImage();
 		}
 		g2.drawImage(current, x, y, null);

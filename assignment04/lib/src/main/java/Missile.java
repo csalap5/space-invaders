@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-
 /**
  * Class representing a missile fired by either the base or an invader.
  */
@@ -32,7 +31,6 @@ public class Missile extends Drawable {
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
 		g2.drawString( "|", x, y);
-
 	}
 	/**
      * Moves the missile in the correct direction.
@@ -84,5 +82,4 @@ public class Missile extends Drawable {
 	public boolean getHitOne() {
 		return hitOne;
 	}
-
 }
