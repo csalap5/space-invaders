@@ -318,7 +318,19 @@ public class Panel extends JPanel implements KeyListener{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         if (invaders.isEmpty() && !mysteryShipActive && missiles.isEmpty()) {
-        	createWave(score);
+        	if (invaderPulseLimit <= 10) {
+        		this.pauseGame();
+        		g2.setFont(font);
+        		g2.setColor(Color.YELLOW);
+        		String victory = "VICTORY!!!";
+        		FontMetrics fm = g2.getFontMetrics();
+        		g2.drawString(victory, getWidth()/2-fm.stringWidth(victory)/2, getHeight()/2);
+        		g2.setFont(font2);
+            	g2.drawString("Final Score: " + score, getWidth()/2-fm.stringWidth("Final Score: " + score)/2 + 80,
+            			getHeight()/2 + 40);
+            	return;
+        	}
+        	else createWave(score);
         	return;
         }
         if (base.isItHit()) {
@@ -483,6 +495,9 @@ public class Panel extends JPanel implements KeyListener{
         		invaders.add(inv);
         	}
         }
+	    if (invaderPulseLimit>14) {
+	    	invaderPulseLimit -= 5;
+	    }
 	    timer.start();	
 	}
 }
