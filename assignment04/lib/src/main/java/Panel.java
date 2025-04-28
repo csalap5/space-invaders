@@ -264,33 +264,38 @@ public class Panel extends JPanel implements KeyListener{
 		}
 		if (missiles.size() > 0 && invaders.size() > 0) {
 		for (int mis = missiles.size()-1; mis >=0; mis--) {
-			if (missiles.get(mis).getHitOne()) continue;
+			Missile m = missiles.get(mis);
+			if (m.getHitOne()) continue;
 			for (int invad = invaders.size()-1; invad >=0; invad--) {
-				if (missiles.get(mis).getX()-invaders.get(invad).getX() < 50 &&
-						missiles.get(mis).getX()-invaders.get(invad).getX() > 0 &&
-						missiles.get(mis).getY()-invaders.get(invad).getY() < 60 && 
-						missiles.get(mis).getY()-invaders.get(invad).getY() > 10) {
-					score += invaders.get(invad).getPoints();
-					invaders.get(invad).setHit();
-					missiles.get(mis).setHitOne();
+				Invader i = invaders.get(invad);
+				if (!m.isFromInvader() &&
+						m.getX() - i.getX() < i.getW() &&
+						m.getX() - i.getX() > 0 &&
+						m.getY()- i.getY() < i.getH() && 
+						m.getY()- i.getY() > 0) {
+					score += i.getPoints();
+					i.setHit();
+					m.setHitOne();
 					break;
 				}
 			}
-			if (missiles.get(mis).isFromInvader() && 
-					missiles.get(mis).getX() - base.getX() < 30 && 
-					missiles.get(mis).getX() - base.getX() > -5 &&
-					missiles.get(mis).getY() - base.getY() < 20 && 
-					missiles.get(mis).getY() - base.getY() > -10){
+			if (m.isFromInvader() && 
+					m.getX() - base.getX() < 30 && 
+					m.getX() - base.getX() > 0 &&
+					m.getY() - base.getY() < 20 && 
+					m.getY() - base.getY() > 0){
 				base.setHit();
+				m.setHitOne();
 			}
-			if (mysteryShipActive && missiles.get(mis).getX() - mysteryShip.getX() < 60 && 
-					missiles.get(mis).getX() - mysteryShip.getX() > 0 &&
-					missiles.get(mis).getY() - mysteryShip.getY() < 60 &&
-					missiles.get(mis).getY() - mysteryShip.getY() < 60) {
+			if (mysteryShipActive && 
+					m.getX() - mysteryShip.getX() < 60 && 
+					m.getX() - mysteryShip.getX() > 0 &&
+					m.getY() - mysteryShip.getY() < 60 &&
+					m.getY() - mysteryShip.getY() > 0) {
 				score += mysteryShip.getPoints();
 				mysteryShip.setHit();
 				mysteryShip.getMystSound().stop();
-				missiles.get(mis).setHitOne();
+				m.setHitOne();
 				break;
 			}
 		}
