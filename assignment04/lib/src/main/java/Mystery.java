@@ -43,8 +43,8 @@ public class Mystery extends Invader {
      */
 	public Mystery(int x, int y, int w, int h) {
 		super(x,y,w,h,getRandom());
-		normImage = Drawable.getImage("img_mystery.gif");
-		swapImage = normImage;
+		setNormImage(Drawable.getImage("img_mystery.gif"));
+		setSwapImage(Drawable.getImage("img_mystery.gif"));
 		this.speed = 5;
 		
 	}

@@ -1,5 +1,7 @@
 import java.awt.Graphics2D;
 import java.awt.Image;
+
+import javax.sound.sampled.Clip;
 /**
  * Abstract class representing an invader ship.
  */
@@ -18,7 +20,8 @@ public abstract class Invader extends Ship {
 	public Invader(int x, int y, int w, int h, int points) {
 		super(x , y, w, h);
 		this.points = points;
-		hitImage=Drawable.getImage("img_invaderhit.gif");
+		setHitImage(Drawable.getImage("img_invaderhit.gif"));
+		
 	}
 	/**
      * Draws the invader in its destroyed state.
@@ -26,7 +29,7 @@ public abstract class Invader extends Ship {
      * @param g2 the Graphics2D context to draw on
      */
 	public void drawDestroyed(Graphics2D g2) {
-		g2.drawImage( hitImage, getX(), getY(), 20, 20, null );
+		g2.drawImage( this.getHitImage(), getX(), getY(), 20, 20, null );
 	}
 	/**
      * Draws the invader based on its current image state.
@@ -39,10 +42,11 @@ public abstract class Invader extends Ship {
 		var y = getY();
 		Image current;
 		if (swapped) {
-			current = normImage;
+			current = this.getNormImage();
 		}
 		else {
-			current = swapImage;
+			//current = swapImage;
+			current = this.getSwapImage();
 		}
 		g2.drawImage(current, x, y, null);
 	}

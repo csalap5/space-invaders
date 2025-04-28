@@ -276,8 +276,8 @@ public class Panel extends JPanel implements KeyListener{
 		if (code == KeyEvent.VK_RIGHT) right = true;
 		
 		if (code == KeyEvent.VK_SPACE && countPlayerMissiles() < 1) {
-			base.sound.setFramePosition(0);
-			base.sound.start();
+			base.getSound().setFramePosition(0);
+			base.getSound().start();
 
 			fireMissile();
 		}
@@ -288,7 +288,7 @@ public class Panel extends JPanel implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		var code = e.getKeyCode();
-		if (code == KeyEvent.VK_SPACE) base.sound.stop();
+		if (code == KeyEvent.VK_SPACE) base.getSound().stop();
 		if (code == KeyEvent.VK_LEFT) left = false;
 		if (code == KeyEvent.VK_RIGHT) right = false;
 	}

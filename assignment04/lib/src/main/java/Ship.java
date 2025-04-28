@@ -18,15 +18,71 @@ public abstract class Ship extends Drawable {
 	private boolean wasHit = false;
 	private final Clip hitSound = Ship.getSound("aud_hit.wav");
 	
-	/** Sound associated with the ship,firing sound. */
-	protected Clip sound;
-	/** Normal (default) ship image. */
-	protected Image normImage;
-	/** Alternate ship image (for swapping animation). */
-	protected Image swapImage;
-	/** Image used when the ship is hit. */
-	protected Image hitImage;
 	
+	private Clip sound;
+	private Image normImage;
+	private Image swapImage;
+	private Image hitImage;
+	
+	/**
+	 * Getter method for sound clip
+	 * 
+	 * @return sound
+	 */
+	public Clip getSound() {
+		return sound;
+	}
+
+	/**
+	 * Getter method for normImage
+	 * 
+	 * @return normImage
+	 */
+	public Image getNormImage() {
+		return normImage;
+	}
+
+	/**
+	 * Getter method for swapImage
+	 * 
+	 * @return swapImage
+	 */
+	public Image getSwapImage() {
+		return swapImage;
+	}
+	/**
+	 * Getter method for hitImage
+	 * 
+	 * @return hitImage
+	 */
+	public Image getHitImage() {
+		return hitImage;
+	}
+	/**
+	 * Setter method for sound
+	 */
+	public void setSound(Clip sound) {
+		this.sound = sound;
+	}
+	/**
+	 * Setter method for normImage
+	 */
+	public void setNormImage(Image normImage) {
+		this.normImage = normImage;
+	}
+	/**
+	 * Setter method for swapImage
+	 */
+	public void setSwapImage(Image swapImage) {
+		this.swapImage = swapImage;
+	}
+	/**
+	 * Setter method for hitImage
+	 */
+	public void setHitImage(Image hitImage) {
+		this.hitImage = hitImage;
+	}
+
 	/**
      * Constructs a Ship at a specific position with width and height.
      *
