@@ -17,6 +17,7 @@ public abstract class Ship extends Drawable {
 	private boolean isHit = false;
 	private boolean wasHit = false;
 	private final Clip hitSound = Ship.getSound("aud_hit.wav");
+	private int timeFromHit = 0;
 	
 	
 	private Clip sound;
@@ -110,18 +111,11 @@ public abstract class Ship extends Drawable {
 		isHit = true;
 	}
 	/**
-     * Marks the ship as having been hit previously.
-     */
-	public void setWasHit() {
-		wasHit=true;
-	}
-	/**
-     * Checks if the ship was hit previously.
-     *
-     * @return true if the ship was previously hit, false otherwise
-     */
-	public boolean getWasHit() {
-		return wasHit;
+	 * 
+	 */
+	public int incTimeFromHit() {
+		timeFromHit++;
+		return timeFromHit;
 	}
 	/**
      * Loads and returns a sound clip from the given filename.
