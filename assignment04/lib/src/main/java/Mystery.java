@@ -32,7 +32,7 @@ public class Mystery extends Invader {
 		return values[ index ].points;
 	}
 	private int speed;
-	private Clip mystSound;
+	private Clip mystSound = Mystery.getSound("aud_mystery.wav");
 	 /**
      * Constructs a Mystery ship at the given position with a random point value.
      *
@@ -64,12 +64,12 @@ public class Mystery extends Invader {
 		this.speed = s; 
 	}
 	
-	/**
-     * Plays the Mystery ship's sound.
-     */
-	public void playSound() {
-		
-	}
+//	/**
+//     * Plays the Mystery ship's sound.
+//     */
+//	public void playSound() {
+//		
+//	}
 	
 	/**
      * Gets the speed of the Mystery ship.
@@ -78,5 +78,14 @@ public class Mystery extends Invader {
      */
 	public int getSpeed() {
 		return this.speed; 
+	}
+	
+	/**
+	 * Gets the sound of Mystery ship
+	 * 
+	 * @return mystery ship sound clip
+	 */
+	public Clip getMystSound() {
+		return mystSound;
 	}
 }

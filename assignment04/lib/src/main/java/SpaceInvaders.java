@@ -8,14 +8,19 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 /**
+ * Represents the main window for the Space Invaders game.
+ * Sets up the game menu and handles user interactions like starting a new game,
+ * pausing, resuming, and quitting.
  * 
+ * @author Carter Salapka and Kevin Farnsworth
  */
 @SuppressWarnings("serial")
 public class SpaceInvaders extends JFrame {
 	private Panel panel;
 	/**
-	 * 
-	 */
+     * Constructs the Space Invaders window, setting up the menu and game controls.
+     * Initializes the pause/resume functionality and handles user actions.
+     */
 	public SpaceInvaders() {
 		
 		setTitle("Space Invaders");
@@ -118,9 +123,11 @@ public class SpaceInvaders extends JFrame {
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			
 	}
-	/*
-	 * 
-	 */
+	/**
+     * Main method to launch the Space Invaders game.
+     * 
+     * @param args arguments
+     */
 	public static void main(String[] args) {
 		var v = new SpaceInvaders();
 		v.setVisible(true);

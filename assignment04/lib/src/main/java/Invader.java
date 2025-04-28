@@ -1,7 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import javax.sound.sampled.Clip;
 /**
  * Abstract class representing an invader ship.
  */
