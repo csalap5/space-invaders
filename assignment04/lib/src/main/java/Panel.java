@@ -221,6 +221,7 @@ public class Panel extends JPanel implements KeyListener{
 					missiles.get(mis).getY() - mysteryShip.getY() < 60) {
 				score += mysteryShip.getPoints();
 				mysteryShip.setHit();
+				mysteryShip.getMystSound().stop();
 				missiles.get(mis).setHitOne();
 				break;
 			}
@@ -253,7 +254,8 @@ public class Panel extends JPanel implements KeyListener{
         	FontMetrics fm = g2.getFontMetrics();
         	g2.drawString(gameOver, getWidth()/2-fm.stringWidth(gameOver)/2, getHeight()/2);
         	g2.setFont(font2);
-        	g2.drawString("Final Score: " + score, getWidth()/2-fm.stringWidth(gameOver)/2, getHeight()/2 + 40);
+        	g2.drawString("Final Score: " + score, getWidth()/2-fm.stringWidth("Final Score: " + score)/2 + 80,
+        			getHeight()/2 + 40);
         	return;
         }
         else base.draw(g2);
@@ -280,7 +282,7 @@ public class Panel extends JPanel implements KeyListener{
             		mysteryShipActive=false;
             	}
         	}
-        	mysteryShip.draw(g2);
+        	else mysteryShip.draw(g2);
         }
         g2.drawString("Score: " + score, 400,20);
     }
