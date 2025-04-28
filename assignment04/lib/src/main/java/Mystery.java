@@ -1,5 +1,4 @@
 import java.util.Random;
-
 import javax.sound.sampled.Clip;
 /**
  * Represents the special "Mystery" ship that moves across the screen 
@@ -64,13 +63,6 @@ public class Mystery extends Invader {
 	public void setSpeed(int s) {
 		this.speed = s; 
 	}
-	
-//	/**
-//     * Plays the Mystery ship's sound.
-//     */
-//	public void playSound() {
-//		
-//	}
 	
 	/**
      * Gets the speed of the Mystery ship.
