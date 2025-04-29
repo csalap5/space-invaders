@@ -120,7 +120,7 @@ public class Panel extends JPanel implements KeyListener{
 		setBackground(Color.BLACK);
         setFocusable(true);
         addKeyListener(this);
-        base = new Base(325,380,100,100);
+        base = new Base(250,380,100,100);
 		invaders = new ArrayList<>();
         missiles = new ArrayList<>();
         
@@ -297,7 +297,6 @@ public class Panel extends JPanel implements KeyListener{
 					m.getY() - mysteryShip.getY() > 0) {
 				score += mysteryShip.getPoints();
 				mysteryShip.setHit();
-				mysteryShip.getMystSound().stop();
 				m.setHitOne();
 				break;
 			}
@@ -331,7 +330,7 @@ public class Panel extends JPanel implements KeyListener{
         		g2.setFont(font2);
             	g2.drawString("Final Score: " + score, getWidth()/2-fm.stringWidth("Final Score: " + score)/2 + 80,
             			getHeight()/2 + 40);
-            	return;
+            	return;  
         	}
         	else createWave(score);
         	return;
@@ -372,6 +371,7 @@ public class Panel extends JPanel implements KeyListener{
         		
         		if (mysteryCount>=50) {
             		mysteryShipActive=false;
+            		mysteryCount=0;
             	}
         	}
         	else mysteryShip.draw(g2);
@@ -470,7 +470,7 @@ public class Panel extends JPanel implements KeyListener{
 	    score = scoreVal;
 	    mysteryCount=0;
 	    
-	    base = new Base(325,380,100,100);
+	    base = new Base(250,380,100,100);
         int rows = 5;
         int columns = 10;
         int horizontalSpace = 35;
