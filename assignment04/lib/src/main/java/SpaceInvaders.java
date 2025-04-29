@@ -24,7 +24,7 @@ public class SpaceInvaders extends JFrame {
      * Constructs the Space Invaders window, setting up the menu and game controls.
      * Initializes the pause/resume functionality and handles user actions.
      */
-	public SpaceInvaders() {
+public SpaceInvaders() {
 		
 		setTitle("Space Invaders");
 
@@ -50,10 +50,6 @@ public class SpaceInvaders extends JFrame {
 		pause.setEnabled(false);
 	    resume.setEnabled(false);
 		
-	    game.addActionListener(e -> {
-	    	pause.setEnabled(true);
-		    resume.setEnabled(true);
-	    });
 		pause.addActionListener(e -> {
 			panel.pauseGame();
 			resume.setEnabled(true);
@@ -70,20 +66,23 @@ public class SpaceInvaders extends JFrame {
 			panel.pauseGame();
 			var result = JOptionPane.showConfirmDialog(this, "Start a New Game?", "New Game", JOptionPane.YES_NO_OPTION);
 			pause.setEnabled(false);
-		    resume.setEnabled(false);
+		    resume.setEnabled(true);
 			if (result == JOptionPane.YES_OPTION) {
+				pause.setEnabled(true);
+			    resume.setEnabled(false);
 				remove(panel);
 				panel.pauseGame();
 				panel = new Panel();
+				
 				add(panel);
 				revalidate();
 				repaint();
 				
-				 pause.setEnabled(true);
-			     resume.setEnabled(false);
 			}
-			else {
+			if (result == JOptionPane.NO_OPTION){
 				panel.resumeGame();
+				pause.setEnabled(false);
+				resume.setEnabled(false);
 			}
 		});
 		
@@ -123,6 +122,7 @@ public class SpaceInvaders extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);			
 	}
+
 	/**
      * Main method to launch the Space Invaders game.
      * 
