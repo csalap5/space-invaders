@@ -6,6 +6,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 /**
  * Represents the main window for the Space Invaders game.
@@ -49,6 +51,7 @@ public SpaceInvaders() {
 		
 		pause.setEnabled(false);
 	    resume.setEnabled(false);
+	    
 		
 		pause.addActionListener(e -> {
 			panel.pauseGame();
